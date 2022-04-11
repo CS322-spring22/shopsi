@@ -1,0 +1,11 @@
+{
+    "manifest_version": 3,
+    "name": "shopsi",
+    "description": "Shop with your sizes",
+    "version": "1.0",
+    "action": {
+        "default_icon": "logo.png",
+        "default_popup": "popup.html"
+    },
+    "permissions": []
+}
