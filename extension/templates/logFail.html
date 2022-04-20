@@ -1,0 +1,14 @@
+<HTML>
+
+<body>
+    <h1>Login Failed</h1>
+    <p>Would you like to sign up?</p>
+    <body>
+        <form action='{{ url_for("failEXT")}}' method="post">
+        <label for="firstname">Username:</label>
+        <input type="text" id="firstname" name="fname" placeholder="username">
+        <label for="lastname">Password:</label>
+        <input type="text" id="lastname" name="lname" placeholder="password">
+        <button type="submit">Sign Up</button>
+    </body>
+</body>
