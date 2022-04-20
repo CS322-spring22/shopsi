@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 import json
 import os
 
@@ -80,3 +80,7 @@ def userAddMeaurements():
     if request.method == 'POST':
         return 'not ready yet, this is tricky'
     return render_template('entermeasure.html')
+
+port = int(os.environ.get('PORT', 8080))
+if __name__ == '__main__':
+    api.run(threaded=True, host='0.0.0.0', port=port)
