@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="popup.css">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ShopSi</title>
+    </head>
+    <body class="extension">
+        <div class="intro">
+            <h1 class="logo-header">
+                <img src="logo.png" class="intro-logo">
+                <span class="intro-logo">Shop</span><span class="intro-logo">$i</span>
+            </h1>
+        </div>
+        <div class="container">
+            <img src="logo.png" class="logo">
+            <h1 class="header active">Shop$i</h1>
+            <h3 class="desc">Shop with your size</h3><br></br>
+            <div class="login">
+                <form method="post" id="login-form">
+                    <h2>Welcome back!</h2>
+                    <div class="text_field">
+                        <input type="text" id="username" required>
+                        <span></span>
+                        <label>Username</label>
+                    </div>
+                    <div class="text_field">
+                        <input type="text" id="password" required>
+                        <span></span>
+                        <label>Password</label>
+                    </div>
+                    <div class="forgotPass">Forgot password?</div>
+                    <button type="button" id="log-in">Log in</button>
+                    <div class="wrongPass" id="wrongPass">Wrong authentication</div>
+                    <div class="signup_link">
+                        Not a member yet? <a href="#">Sign up</a>
+                    </div>
+                </form>
+            </div>
+            <script>
+                // document.getElementById('login-form').style.display = 'none'
+            </script>
+            <div class="measurement">
+                
+                <form method="post" id="logedin-form">
+                    <button type="button" id="log-out">Log out</button>
+                    <h2>Enter your measurement</h1>
+                    <div class="text_field">
+                        <input type="text" id="weight" required>
+                        <label>Enter your weight</label>
+                    </div>
+                    <div class="text_field">
+                        <input type="text" id="height" required>
+                        <label>Enter your height</label>
+                    </div>
+                    <button type="button" id="enter-measurement" >Submit</button>
+                </form>
+                <div id="results">
+                </div>
+            </div>
+
+        </div>
+        
+        <script    src="intro.js"></script>
+        <script src="popup.js"></script>
+    </body>
+</html>
