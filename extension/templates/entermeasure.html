@@ -1,0 +1,36 @@
+<html>
+<body>
+    <h1>Enter/Update Your Meaurements! :)</h1>
+    <form action='{{ url_for("userAddMeaurements")}}' method="post">
+        <table>
+            <tr>
+                <th>Waist</th>
+                <td>
+                    <input type="number" name="waist" placeholder="waist measurement">
+                </td>
+                <td>
+                    <input type="text" name="unit" placeholder="cm or in (inches)">
+                </td>
+            </tr>
+            <tr>
+                <th>Bust</th>
+                <td>
+                    <input type="number" name="bust" placeholder="bust measurement">
+                </td>
+                <td>
+                    <input type="text" name="unit" placeholder="cm or in (inches)">
+                </td>
+            </tr>
+            <tr>
+                <th>Arm Length</th>
+                <td>
+                    <input type="number" name="armlen" placeholder="arm length measurement">
+                </td>
+                <td>
+                    <input type="text" name="unit" placeholder="cm or in (inches)">
+                </td>
+            </tr>
+        </table>
+        <button type="submit">enter my measurements</button>
+    </form>
+</body>
