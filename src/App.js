@@ -16,7 +16,7 @@ function App() {
   function getData() {
     axios({
       method: "GET",
-      url:"/profile",
+      url:"https://anastatiad.pythonanywhere.com/profile",
     }).then((response) => {
       const res =response.data
       setProfileData(({
