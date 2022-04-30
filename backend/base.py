@@ -1,15 +1,13 @@
-from crypt import methods
 from flask import Flask, Response, request, render_template, jsonify
-import werkzeug as werk
 from flask_cors import CORS, cross_origin
 import json
 import os
 
-template_dir = os.path.abspath('/mnt/c/Users/nvg-1/shopsi/extension/templates')
+template_dir = os.path.abspath('/home/anastatiaD/templates')
 api = Flask(__name__, template_folder=template_dir)
 api.config['CORS_HEADERS'] = 'Content-Type'
 CORS(api, headers=['Content-Type'])
-    
+
 @api.route('/numUsers')
 def getUsers():
     users = {}
@@ -34,7 +32,7 @@ def signupLP():
     if request.method == 'POST':
         if (request.json != {}):
             users = {}
-            if os.stat("/mnt/c/Users/nvg-1/shopsi/backend/users.json").st_size == 0:
+            if os.stat("/home/anastatiaD/users.json").st_size == 0:
                 users[0] = request.json
                 with open('users.json', 'w') as f:
                     json.dump(users, f)
@@ -48,7 +46,7 @@ def signupLP():
                     users[num] = request.json
                     with open('users.json', 'w') as f:
                         json.dump(users, f)
-                    return {'Status' : 'Successful Signup!'}  
+                    return {'Status' : 'Successful Signup!'}
     return {'Maybe this works too?': 'meh'}
 
 @api.route('/loginLP', methods=['POST', 'GET'])
@@ -57,7 +55,7 @@ def loginLP():
     if request.method == 'POST':
         if (request.json != {}):
             users = {}
-            if os.stat("/mnt/c/Users/nvg-1/shopsi/backend/users.json").st_size == 0:
+            if os.stat("/home/anastatiaD/users.json").st_size == 0:
                 return {'Status' : 'User does not exist'}
             else:
                 with open('users.json', 'r') as f:
@@ -65,7 +63,7 @@ def loginLP():
                 if request.json in users.values():
                     return {'Status' : 'Successful Login'}
                 else:
-                    return {'Status' : 'User does not exist'}  
+                    return {'Status' : 'User does not exist'}
     return {'Maybe this works too?': 'meh'}
 
 @api.route('/measureLP', methods=['POST', 'GET'])
@@ -74,7 +72,7 @@ def measureLP():
     if request.method == 'POST':
         if (request.json != {}):
             users = {}
-            if os.stat("/mnt/c/Users/nvg-1/shopsi/backend/users.json").st_size == 0:
+            if os.stat("/home/anastatiaD/users.json").st_size == 0:
                 return {'Status' : 'User does not exist'}
             else:
                 with open('users.json', 'r') as f:
@@ -93,7 +91,7 @@ def loginEXT():
     if request.method == 'POST':
         username = request.form.get("username")
         password = request.form.get("password")
-        if (os.stat("/mnt/c/Users/nvg-1/shopsi/backend/users.json").st_size == 0):
+        if (os.stat("/home/anastatiaD/users.json").st_size == 0):
             return render_template("logFail.html")
         else:
             with open('users.json', 'r') as f:
@@ -110,7 +108,7 @@ def signupEXT():
     if request.method == 'POST':
         username = request.form.get('fname')
         password = request.form.get('lname')
-        if (os.stat("/mnt/c/Users/nvg-1/shopsi/backend/users.json").st_size == 0):
+        if (os.stat("/home/anastatiaD/users.json").st_size == 0):
             users[0]['username'] = username
             users[0]['password'] = password
             users[0]['measurements'] = {}
@@ -152,5 +150,3 @@ def measureEXT():
                 #return {'Status' : 'Successful Update'}
         #return {'Status' : 'User does not exist'}
     #return {'Maybe this works' : 'something'}
-
-
