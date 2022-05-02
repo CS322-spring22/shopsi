@@ -19,15 +19,55 @@ export class MeasurementForm extends Component {
         })
     }
 
-    // handleSubmit = event => {
-    //     alert(` Bust/Chest: ${this.state.chest} 
-    //             Neckline: ${this.state.neck}
-    //             Waist: ${this.state.waist}
-    //             Low Hip: ${this.state.hip}
-    //             Arm Length: ${this.state.arm}
-    //             Inside Leg: ${this.state.leg} `)
-    //     event.preventDefault()
-    // }
+    handleSubmit = event => {
+        alert(` Bust/Chest: ${this.state.chest} 
+                 Neckline: ${this.state.neck}
+                 Waist: ${this.state.waist}
+                 Low Hip: ${this.state.hip}
+                 Arm Length: ${this.state.arm}
+                 Inside Leg: ${this.state.leg} `)
+        event.preventDefault()      
+        axios.post(`https://anastatiad.pythonanywhere.com/signupLP`, 
+            { 
+                 "Bust/Chest": this.state.chest, 
+                 "Neckline": this.state.neck,
+                 "Waist": this.state.waist,
+                 "Low Hip": this.state.hip,
+                 "Arm Length": this.state.arm,
+                 "Inside Leg": this.state.leg
+            }
+        )
+        .then(
+            (response) => {
+                var result = response.data;
+                this.state.status = result.status;
+                console.log(result);
+                if (this.state.status == 'User does not exist') {
+                    //prompt user to sign up
+                    //switch to sign up pop up (how do I do that?)
+                }
+                else {
+                    //go to next page (measurements)
+                    //switch to measurements pop up
+                }
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+        axios.get('https://anastatiad.pythonanywhere.com/signupLP')
+        .then((response) => {
+            const res =response.data
+            this.state.status = res.status
+        })
+        .catch((error) => {
+            if (error.response) {
+                console.log(error.response)
+                console.log(error.response.status)
+                console.log(error.response.headers)
+            }
+        });
+    }
 
 
   render() {

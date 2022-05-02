@@ -13,7 +13,7 @@
         <h1 class="header active">Shop$i</h1>
         <h3 class="desc">Shop with your size</h3><br></br>
         <div class="signUp">
-            <form method="post" id="signup-form">
+            <form method="post" id="signup-form" action='{{ url_for("signupEXT")}}'>
                 <h2>Sign up</h2>
                 <div class="text_field">
                     <input type="text" id="firstName" required>
@@ -26,12 +26,12 @@
                     <label>Last name</label>
                 </div>
                 <div class="text_field">
-                    <input type="text" id="regUsername" required>
+                    <input type="text" id="regUsername" name="username" required>
                     <span></span>
                     <label>Username</label>
                 </div>
                 <div class="text_field">
-                    <input type="text" id="regPassword" required>
+                    <input type="text" id="regPassword" name="password" required>
                     <span></span>
                     <label>Password</label>
                 </div>
