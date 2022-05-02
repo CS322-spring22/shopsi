@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/signup.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopSi</title>
+</head>
+<body class="extension">
+    <div class="container">
+        <img src="logo.png" class="logo">
+        <h1 class="header active">Shop$i</h1>
+        <h3 class="desc">Shop with your size</h3><br></br>
+        <div class="signUp">
+            <form method="post" id="signup-form">
+                <h2>Sign up</h2>
+                <div class="text_field">
+                    <input type="text" id="firstName" required>
+                    <span></span>
+                    <label>First name</label>
+                </div>
+                <div class="text_field">
+                    <input type="text" id="lastName" required>
+                    <span></span>
+                    <label>Last name</label>
+                </div>
+                <div class="text_field">
+                    <input type="text" id="regUsername" required>
+                    <span></span>
+                    <label>Username</label>
+                </div>
+                <div class="text_field">
+                    <input type="text" id="regPassword" required>
+                    <span></span>
+                    <label>Password</label>
+                </div>
+                <button type="button" id="sign-up">Sign Up</button>
+            </form>
+            <div id="info"></div>
+        </div>
+    </div>
+    
+    <script src="js/signup.js"></script>
+</body>
+</html>
