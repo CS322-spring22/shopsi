@@ -104,6 +104,11 @@ button#enter-measurement {
     position: relative;
     left: 25%;
 }
+button#enter-measurement:hover {
+    border-color:#ffffff;
+    transition: .5s;
+    background-color: #c184ff;
+}
 button#log-out {
     width: 20%;
     height: 30px;
@@ -119,6 +124,11 @@ button#log-out {
     left: 2%;
     margin-bottom: 10px;
 }
+button#log-out:hover {
+    border-color:#ffffff;
+    transition: .5s;
+    background-color: #c184ff;
+}
 button#reEnter {
     margin-top: 5px;
     width: 100%;
@@ -132,5 +142,10 @@ button#reEnter {
     cursor: pointer;
     outline: none;
     position: relative;
+}
+button#reEnter {
+    border-color:#ffffff;
+    transition: .5s;
+    background-color: #c184ff;
 }
 

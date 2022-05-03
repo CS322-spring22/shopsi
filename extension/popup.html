@@ -8,12 +8,6 @@
     <title>ShopSi</title>
 </head>
 <body class="extension">
-    <!-- <div class="intro">
-        <h1 class="logo-header">
-            <img src="logo.png" class="intro-logo">
-            <span class="intro-logo">Shop</span><span class="intro-logo">$i</span>
-        </h1>
-    </div> -->
     <div class="container">
         <img src="logo.png" class="logo">
         <h1 class="header active">Shop$i</h1>
@@ -27,43 +21,20 @@
                     <label>Username</label>
                 </div>
                 <div class="text_field">
-                    <input type="text" id="password" required>
+                    <input type="text" style="-webkit-text-security: disc;" id="password" required>
                     <span></span>
                     <label>Password</label>
                 </div>
                 <div class="forgotPass">Forgot password?</div>
                 <button type="button" id="log-in">Log in</button>
                 <div class="wrongPass" id="wrongPass">Wrong authentication</div>
+                <div class="missingFields" id="missingFields">Missing fields</div>
                 <div class="signup_link">
                     Not a member yet? <button type="button" id="sign-up">Sign up</button>
                 </div>
             </form>
         </div>
-        <script>
-            // document.getElementById('login-form').style.display = 'none'
-        </script>
-        <!-- <div class="measurement">
-            
-            <form method="post" id="logedin-form">
-                <button type="button" id="log-out">Log out</button>
-                <h2>Enter your measurement</h1>
-                <div class="text_field">
-                    <input type="text" id="weight" required>
-                    <label>Enter your weight</label>
-                </div>
-                <div class="text_field">
-                    <input type="text" id="height" required>
-                    <label>Enter your height</label>
-                </div>
-                <button type="button" id="enter-measurement" >Submit</button>
-            </form>
-            <div id="results">
-            </div>
-        </div> -->
-
     </div>
-    
-    <script src="js/intro.js"></script>
     <script src="js/popup.js"></script>
 </body>
 </html>

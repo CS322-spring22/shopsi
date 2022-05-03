@@ -45,11 +45,13 @@ div.signUp {
     font-size: 30px;
     padding: 0 0 10px 0;
     font-weight: 1200;
+    margin-top: -13px;
 }
 form .text_field {
     position: relative;
     border-bottom: 2px solid #adadad;
     margin: 30px 0;
+    margin-top:-1px;
 }
 .text_field input {
     width: 100%;
@@ -100,8 +102,29 @@ button#sign-up {
     font-weight: 600;
     cursor: pointer;
     outline: none;
+    margin-top: 4px;
 }
 button#sign-up:hover { 
-    border-color:#2F1C53;
+    border-color:#ffffff;
     transition: .5s;
+    background-color: #c184ff;
+}
+button#log-in {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    font-family: 'Montserrat';
+    color: #2F1C53;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 17px;
+}
+button#log-in:hover {
+    border-color:#ffffff;
+    transition: .5s;
+    color: #c184ff;
+}
+div.alrUser {
+    font-size: 17px;
+    margin-top: -15px;
 }
