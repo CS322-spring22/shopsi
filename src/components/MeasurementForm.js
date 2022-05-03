@@ -19,64 +19,59 @@ export class MeasurementForm extends Component {
         })
     }
 
-    // handleSubmit = event => {
-    //     alert(` Bust/Chest: ${this.state.chest} 
-    //             Neckline: ${this.state.neck}
-    //             Waist: ${this.state.waist}
-    //             Low Hip: ${this.state.hip}
-    //             Arm Length: ${this.state.arm}
-    //             Inside Leg: ${this.state.leg} `)
-    //     event.preventDefault()
-    // }
-
 
   render() {
     return (
-        <form onSubmit={this.handleSubmit}>
-            <label>Bust/Chest:
-                <input type='text'
+        <form className="measurement-form" onSubmit={this.handleSubmit}>
+            <label>
+                Chest:
+                <input type='range'
                 name='chest'
                 value={this.state.chest}
                 onChange={this.handleInput}
                 />
             </label>
             
-            <label> Neckline:
-                <input type='text' 
+            <label> 
+                Neck:
+                <input type='range' 
                 name='neck'
                 value={this.state.neck}
                 onChange={this.handleInput}
                 />
             </label>  
-            <label> Waist:
-                <input type='text' 
+            <label> 
+                Waist:
+                <input type='range' 
                 name='waist'
                 value={this.state.waist}
                 onChange={this.handleInput}
                 />
             </label>  
-            <label> Low Hip:
-                <input type='text' 
+            <label>
+                Low Hip:
+                <input type='range' 
                 name='hip'
                 value={this.state.hip}
                 onChange={this.handleInput}
                 />
             </label>  
-            <label> Arm Length:
-                <input type='text' 
+            <label> 
+                Arm:
+                <input type='range' 
                 name='arm'
                 value={this.state.arm}
                 onChange={this.handleInput}
                 />
             </label>  
-            <label> Inside Leg:
-                <input type='text' 
+            <label> 
+                Inside Leg:
+                <input type='range' 
                 name='leg'
                 value={this.state.leg}
                 onChange={this.handleInput}
                 />
             </label>  
-            {/* <button type="submit">Submit</button>     */}
     </form>
     )
   }
