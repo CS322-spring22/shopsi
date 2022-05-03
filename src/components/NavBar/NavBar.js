@@ -1,8 +1,8 @@
+import './NavBar.css';
 import React, { useState } from 'react'
-import { FaBars, FaTimes } from 'react-icons/fa'
 import { Link } from 'react-scroll'
-import { Link as rLink} from 'react-router-dom'
-
+import { Link as Redirect} from 'react-router-dom'
+import logo from './logo.png'
 
 const Navbar = () => {
   const [click, setClick] = useState(false)
@@ -14,7 +14,7 @@ const Navbar = () => {
     <div className='navheader'>
         <nav className='navbar'>
             <a href='/' className='logo'>
-                <img  alt='logo' />
+                <img src={logo} alt='logo' />
             </a>
             <ul className={click ? "nav-menu active" : "nav-menu"}>
                 <li className='nav-item'>
@@ -24,10 +24,10 @@ const Navbar = () => {
                   <Link to='how-to' spy={true} smooth={true} offset={50} duration={500} onClick={closeMenu}>How To</Link>
                 </li>
                 <li className='nav-item'>
-                  <Link to='/measurements'onClick={closeMenu}>Get Started</Link>
+                  <Redirect to='/sign-up'onClick={closeMenu}>Get Started</Redirect>
                 </li>
                 <li className='nav-item'>
-                  <Link  onClick={() => {closeMenu(); setLoginPopup(true);}}>Login</Link>
+                  <Redirect to='/login'onClick={closeMenu}>Login</Redirect>
                 </li>
             </ul>
         </nav>
