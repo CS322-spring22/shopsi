@@ -7,6 +7,7 @@ import os
 template_dir = os.path.abspath('/mnt/c/Users/nvg-1/shopsi/extension')
 api = Flask(__name__, template_folder=template_dir)
 api.config['CORS_HEADERS'] = 'Content-Type'
+api.secret_key = 'butteredpopcornjellybellyismyfavorite'
 CORS(api, headers=['Content-Type'])
 
 def updateMeas(measurement, user, number):
@@ -48,9 +49,10 @@ def signupLP():
             users = {}
             if os.stat("/mnt/c/Users/nvg-1/shopsi/backend/users.json").st_size == 0:
                 users[0] = request.json
+                session['user'] = request.json
                 with open('users.json', 'w') as f:
                     json.dump(users, f)
-                session['user'] = request.json
+                return {'Status' : 'Successful Signup!'}
             else:
                 with open('users.json', 'r') as f:
                     users = json.load(f)

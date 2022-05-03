@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 export class MeasurementForm extends Component {
     constructor(props) {
@@ -27,7 +28,7 @@ export class MeasurementForm extends Component {
                  Arm Length: ${this.state.arm}
                  Inside Leg: ${this.state.leg} `)
         event.preventDefault()      
-        axios.post(`https://anastatiad.pythonanywhere.com/signupLP`, 
+        axios.post(`/measureLP`, 
             { 
                  "Bust/Chest": this.state.chest, 
                  "Neckline": this.state.neck,
@@ -55,7 +56,7 @@ export class MeasurementForm extends Component {
                 console.log(error);
             }
         );
-        axios.get('https://anastatiad.pythonanywhere.com/signupLP')
+        axios.get('/measureLP')
         .then((response) => {
             const res =response.data
             this.state.status = res.status
