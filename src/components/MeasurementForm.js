@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 export class MeasurementForm extends Component {
     constructor(props) {
@@ -17,6 +18,56 @@ export class MeasurementForm extends Component {
         this.setState({
             [event.target.name]: event.target.value
         })
+    }
+
+    handleSubmit = event => {
+        alert(` Bust/Chest: ${this.state.chest} 
+                 Neckline: ${this.state.neck}
+                 Waist: ${this.state.waist}
+                 Low Hip: ${this.state.hip}
+                 Arm Length: ${this.state.arm}
+                 Inside Leg: ${this.state.leg} `)
+        event.preventDefault()      
+        axios.post(`/measureLP`, 
+            { 
+                 "Bust/Chest": this.state.chest, 
+                 "Neckline": this.state.neck,
+                 "Waist": this.state.waist,
+                 "Low Hip": this.state.hip,
+                 "Arm Length": this.state.arm,
+                 "Inside Leg": this.state.leg
+            }
+        )
+        .then(
+            (response) => {
+                var result = response.data;
+                this.state.status = result.status;
+                console.log(result);
+                if (this.state.status == 'User does not exist') {
+                    //prompt user to sign up
+                    //switch to sign up pop up (how do I do that?)
+                }
+                else {
+                    //go to next page (measurements)
+                    //switch to measurements pop up
+                }
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+        axios.get('/measureLP')
+        .then((response) => {
+            const res =response.data
+            this.state.status = res.status
+        })
+        .catch((error) => {
+            if (error.response) {
+                console.log(error.response)
+                console.log(error.response.status)
+                console.log(error.response.headers)
+            }
+        });
     }
 
 

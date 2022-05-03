@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import MeasurementForm from './MeasurementForm'
 
 
 class LoginForm extends Component {
@@ -22,7 +21,7 @@ class LoginForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault()      
-        axios.post(`https://anastatiad.pythonanywhere.com/signupLP`, 
+        axios.post(`/signupLP`, 
             { 
                 'username': this.state.username, 
                 'password': this.state.password, 
@@ -47,7 +46,7 @@ class LoginForm extends Component {
                 console.log(error);
             }
         );
-        axios.get('https://anastatiad.pythonanywhere.com/signupLP')
+        axios.get('/signupLP')
         .then((response) => {
             const res =response.data
             this.state.status = res.status
