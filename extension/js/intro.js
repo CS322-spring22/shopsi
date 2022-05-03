@@ -34,6 +34,7 @@ window.addEventListener('DOMContentLoaded', ()=> {
             // intro.style.top = '-100vh';
             // intro.style.transition ='1s';
             intro.style.opacity = '0';
+            window.location.href ="popup.html"
         }, 2300)
 
         

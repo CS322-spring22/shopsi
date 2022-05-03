@@ -116,9 +116,10 @@ button#log-in {
     cursor: pointer;
     outline: none;
 }
-button.log-in:hover { 
-    border-color:#2F1C53;
+button#log-in:hover { 
+    border-color:#ffffff;
     transition: .5s;
+    background-color: #c184ff;
 }
 .signup_link {
     margin: 20px 0;
@@ -137,6 +138,26 @@ button.log-in:hover {
     text-align: center;
     color: red;
     margin: 10px 0;
+}
+.missingFields {
+    text-align: center;
+    color: red;
+    margin: 10px 0;
+}
+button#sign-up {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    font-family: 'Montserrat';
+    color: #2F1C53;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 17px;
+}
+button#sign-up:hover {
+    border-color:#ffffff;
+    transition: .5s;
+    color: #c184ff;
 }
 /* Splash screen */
 .intro {
@@ -178,3 +199,5 @@ button.log-in:hover {
     opacity: 0;
     transition: ease-in-out 0.5;
 }
+/* end of splash screen */
+
