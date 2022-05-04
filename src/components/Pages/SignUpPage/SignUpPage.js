@@ -1,60 +1,60 @@
 import './SignUpPage.css'
-import React, { Component } from 'react'
-import { Navigate, useNavigate } from "react-router-dom"
+import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 
-class SignUpPage extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-          status: '',
-          username: '',
-          password: '',
-          measurements: {},
-          navigate : ''
+function SignUpPage() {
+    const [status, setStatus] = useState('');
+    const [username, setUser] = useState('');
+    const [password, setPass] = useState('');
+    const [measurements, setMeasure] = useState({});
+    const [navigate, setNav] = useState('/measurements');
+    let nav = useNavigate();
+
+    const handleInput = (event) => {
+        if (event.target.name === 'username') {
+            setUser(event.target.value)
+        }
+        else if (event.target.name === 'password') {
+            setPass(event.target.value)
+        }
+        else {
+            setMeasure({})
         }
     }
 
-    handleInput = (event) => {
-        this.setState({
-          [event.target.name]: event.target.value
-        })
-    }
-
-    handleSubmit = event => {
-      event.preventDefault()      
+    const handleSubmit = (event) => {
+      event.preventDefault()    
       axios.post(`/signupLP`, 
         { 
-          'username': this.state.username, 
-          'password': this.state.password, 
-          'measurements' : this.state.measurements 
+          'username': username, 
+          'password': password, 
+          'measurements' : measurements 
         }
       )
       .then(
         (response) => {
           var result = response.data;
-          this.state.status = result.status;
+          setStatus(result.status)
           console.log(result);
-          if (this.state.status == 'Existing User'){
-              this.state.navigate = '/login'
+          if (status === 'Existing User'){
+            setNav('/login')
           }
           else {
-              this.state.navigate = '/measurements'
+            setNav('/measurements')
           }
         },
         (error) => {
           console.log(error);
         }
       );
-      useNavigate(this.state.navigate);
     }
 
-    render() {
-        return (
-            <div className='SignUpPage'>
-            <h1>Shop$i</h1>
-            <h3 className="desc">Shop with your size</h3><br></br>
-            <div className="signup">
+    return (
+        <div className='SignUpPage'>
+        <h1>Shop$i</h1>
+        <h3 className="desc">Shop with your size</h3><br></br>
+        <div className="signup">
                 <form>
                     <h2>Sign Up</h2>
                     <div className="user-info">
@@ -75,23 +75,24 @@ class SignUpPage extends Component {
                         <div className="box">
                             <label className="infoName">Username</label>
                             <div className="infoBox">
-                                <input type="text" id="usernameText" name='username' value={this.state.username} onChange={this.handleInput}/>
+                                <input type="text" id="usernameText" name='username' value={username} onChange={handleInput}/>
                             </div>
                         </div>
 
                         <div className="box">
                             <label className="infoName">Password</label>
                             <div className="infoBox">
-                                <input type="text" id="passwordText" name='password' value={this.state.password} onChange={this.handleInput}/>
+                                <input type="text" id="passwordText" name='password' value={password} onChange={handleInput}/>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" onClick={this.handleSubmit} id="enter-info">Continue</button>
+                    <button type="submit" onClick={handleSubmit} id="enter-info" onSubmit={async (event) => {nav(this.state.navigate);}}>
+                            Continue
+                    </button>
                     </form>
                 </div>
             </div>
         )
-    }
 }
 
 export default SignUpPage
