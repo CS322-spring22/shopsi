@@ -1,6 +1,6 @@
 import './SignUpPage.css'
 import React, { useState } from 'react'
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import axios from 'axios'
 
 function SignUpPage() {
@@ -87,7 +87,7 @@ function SignUpPage() {
                         </div>
                     </div>
                     <button type="submit" onClick={handleSubmit} id="enter-info" onSubmit={async (event) => {nav(this.state.navigate);}}>
-                            Continue
+                            <Link to={navigate}>Continue</Link>
                     </button>
                     </form>
                 </div>

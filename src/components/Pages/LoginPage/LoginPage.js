@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import './LoginPage.css'
 import axios from 'axios'
 
@@ -35,7 +35,7 @@ class LoginPage  extends Component {
           var result = response.data;
           this.state.status = result.status;
           console.log(result);
-          if (this.state.status == 'User does not exist'){
+          if (this.state.status === 'User does not exist'){
             this.state.navigate = '/sign-up'
           }
           else {
@@ -46,7 +46,6 @@ class LoginPage  extends Component {
           console.log(error);
         }
       );
-      useNavigate(this.state.navigate);
   }
 
   render() {
@@ -72,7 +71,9 @@ class LoginPage  extends Component {
                     </div>
                   </div>
               </div>
-              <button type="submit" onClick={this.handleSubmit} id="enter-info" >Submit</button>
+              <button type="submit" onClick={this.handleSubmit} id="enter-info" >
+                <Link to={this.state.navigate}>Submit</Link>
+              </button>
           </form>
         </div>
       </div>

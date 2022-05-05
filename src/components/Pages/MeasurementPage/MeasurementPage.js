@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import './MeasurementPage.css'
+import axios from 'axios'
 
  export class MeasurementPage extends Component {
     constructor(props){
@@ -51,7 +52,7 @@ import './MeasurementPage.css'
                 console.log(error);
             }
         );
-}
+    }
     
 
     render() {
@@ -66,7 +67,7 @@ import './MeasurementPage.css'
                         <div class="box">
                             <label class="mesName">Bust/Chest</label>
                             <div class="sliderBar">
-                                <input type="range"  min="0" max ="100" name='bust' value={bust}/>
+                                <input type="range"  min="0" max ="100" name='bust' value={this.state.bust}/>
                                 <div class ="value" id="bust-value">0</div>
                             </div>
                         </div>
@@ -74,7 +75,7 @@ import './MeasurementPage.css'
                         <div class="box">
                             <label class="mesName">Neckline</label>
                             <div class="sliderBar">
-                                <input type="range" id="neckSlider" min="0" max ="100" name='neck' value={neck}/>
+                                <input type="range" id="neckSlider" min="0" max ="100" name='neck' value={this.state.neck}/>
                                 <div class ="value" id="neck-value">0</div>
                             </div>
                         </div>
@@ -82,7 +83,7 @@ import './MeasurementPage.css'
                         <div class="box">
                             <label class="mesName">Waist</label>
                             <div class="sliderBar">
-                                <input type="range" id="waistSlider" min="0" max ="100" name='waist' value={waist}/>
+                                <input type="range" id="waistSlider" min="0" max ="100" name='waist' value={this.state.waist}/>
                                 <div class ="value" id="waist-value">0</div>
                             </div>
                         </div>
@@ -90,7 +91,7 @@ import './MeasurementPage.css'
                         <div class="box">
                             <label class="mesName">Low Hip</label>
                             <div class="sliderBar">
-                                <input type="range" id="hipSlider" min="0" max ="100" name='lowHip' value={lowHip}/>
+                                <input type="range" id="hipSlider" min="0" max ="100" name='lowHip' value={this.state.lowHip}/>
                                 <div class ="value" id="hip-value">0</div>
                             </div>
                         </div>
@@ -98,7 +99,7 @@ import './MeasurementPage.css'
                         <div class="box">
                             <label class="mesName">Arm length</label>
                             <div class="sliderBar">
-                                <input type="range" id="armSlider" min="0" max ="100" name='armLen' value={armLen}/>
+                                <input type="range" id="armSlider" min="0" max ="100" name='armLen' value={this.state.armLen}/>
                                 <div class ="value" id="arm-value">0</div>
                             </div>
                         </div>
@@ -106,12 +107,14 @@ import './MeasurementPage.css'
                         <div class="box">
                             <label class="mesName">Inside leg</label>
                             <div class="sliderBar">
-                                <input type="range" id="legSlider" min="0" max ="100" name='inseam' value={inseam}/>
+                                <input type="range" id="legSlider" min="0" max ="100" name='inseam' value={this.state.inseam}/>
                                 <div class ="value" id="leg-value">0</div>
                             </div>      
                         </div> 
                     </div>
-                    <button type="submit" id="enter-measurement" onClick={this.handleSubmit} onSubmit={async (event) => {useNavigate(this.state.navigate);}}>Submit</button>
+                    <button type="submit" id="enter-measurement" onClick={this.handleSubmit} onSubmit={async (event) => {useNavigate(this.state.navigate);}}>
+                        <Link to='/'>Submit</Link>
+                    </button>
                 </form>
             </div>
             </div>

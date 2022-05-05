@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, session
-import werkzeug as werk
+from flask_session import Session
 from flask_cors import CORS, cross_origin
 import json
 import os
@@ -7,8 +7,11 @@ import os
 template_dir = os.path.abspath('/mnt/c/Users/nvg-1/shopsi/extension')
 api = Flask(__name__, template_folder=template_dir)
 api.config['CORS_HEADERS'] = 'Content-Type'
+api.config["SESSION_PERMANENT"] = False
+api.config["SESSION_TYPE"] = "filesystem"
 api.secret_key = 'butteredpopcornjellybellyismyfavorite'
 CORS(api, headers=['Content-Type'])
+Session(api)
 
 def updateMeas(measurement, user, number):
     users = {}
@@ -78,11 +81,11 @@ def loginLP():
             else:
                 with open('users.json', 'r') as f:
                     users = json.load(f)
-                if request.json in users.values():
-                    session['user'] = request.json
-                    return {'Status' : 'Successful Login'}
-                else:
-                    return {'Status' : 'User does not exist'}  
+                for user in users:
+                    if user == request.json:
+                        session['user'] = request.json
+                        return {'Status' : 'Successful Login'}
+                return {'Status' : 'User does not exist'}  
     return {'Maybe this works too?': 'meh'}
 
 @api.route('/measureLP', methods=['POST', 'GET'])
