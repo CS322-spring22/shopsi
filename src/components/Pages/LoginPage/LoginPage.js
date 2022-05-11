@@ -72,7 +72,7 @@ class LoginPage  extends Component {
                   </div>
               </div>
               <button type="submit" onClick={this.handleSubmit} id="enter-info" >
-                <Link to={this.state.navigate}>Submit</Link>
+                <Link to={'/measurements'}>Submit</Link>
               </button>
           </form>
         </div>

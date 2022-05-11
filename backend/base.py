@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, session
-from flask_session import Session
+from flask_session.__init__ import Session
 from flask_cors import CORS, cross_origin
 import json
 import os
@@ -10,6 +10,7 @@ api.config['CORS_HEADERS'] = 'Content-Type'
 api.config["SESSION_PERMANENT"] = False
 api.config["SESSION_TYPE"] = "filesystem"
 api.secret_key = 'butteredpopcornjellybellyismyfavorite'
+SESSION_TYPE = 'redis'
 CORS(api, headers=['Content-Type'])
 Session(api)
 
@@ -76,16 +77,17 @@ def loginLP():
     if request.method == 'POST':
         if (request.json != {}):
             users = {}
+            userL = request.json
             if os.stat("/mnt/c/Users/nvg-1/shopsi/backend/users.json").st_size == 0:
                 return {'Status' : 'User does not exist'}
             else:
                 with open('users.json', 'r') as f:
                     users = json.load(f)
                 for user in users:
-                    if user == request.json:
+                    if users[user]['username'] == userL['username'] and users[user]['password'] == userL['password']:
                         session['user'] = request.json
                         return {'Status' : 'Successful Login'}
-                return {'Status' : 'User does not exist'}  
+                return request.json 
     return {'Maybe this works too?': 'meh'}
 
 @api.route('/measureLP', methods=['POST', 'GET'])
