@@ -11,7 +11,7 @@ var infoObj = [
 var getLogForm = document.getElementById("login-form")
 var wrongPass = document.getElementById("wrongPass")
 var missingFields = document.getElementById("missingFields")
-document.getElementById('sign-up').addEventListener("click", signUp)
+// document.getElementById("sign-up").addEventListener("click", signUp)
 wrongPass.style.display ='none'
 missingFields.style.display = 'none'
 document.getElementById("log-in").addEventListener("click", getInfo)
@@ -38,9 +38,15 @@ function getInfo () {
         wrongPass.style.display ='none'
     }
     
-    
-    
 }
+function init () {
+    chrome.runtime.sendMessage({message: 'is_user_signed_in'}, function(response) {
+        if (response.message ==='success' && response.payload) {
+            window.location.replace('index.html')
+        }
+    })
+}
+init()
 function signUp() {
     window.location.href = "signup.html";
 }

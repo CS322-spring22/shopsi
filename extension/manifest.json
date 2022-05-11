@@ -1,11 +1,29 @@
 {
-    "manifest_version": 3,
-    "name": "shopsi",
+    "manifest_version": 2,
+    "name": "shopsi_dev",
     "description": "Shop with your sizes",
-    "version": "1.0",
-    "action": {
+    "version": "1.5",
+    "browser_action": {
         "default_icon": "logo.png",
-        "default_popup": "intro.html"
+        "default_popup": "popup.html",
+        "default_title": "ShopSi - Shop with your size"
     },
-    "permissions": []
+    "permissions": [
+        "identity",
+        "identity.email"
+    ],
+
+    "background": {
+        "service_worker": "js/background-worker.js"
+    },
+    "key" : "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjw9AW1Y03UT5mrLXgdj7aYGu7GEjZFdl7acwYrty+tckUbnRQOYxTZnzmlR4U3vzDbIzfHxGfAjD5H4oCuVTly+cSWF3rTzuLg/fcDmpH2zyArnLVZF2vz65qaufSkU0zCijgOGUy6n87ZyyOKrN9Cjk2WiVgr0/aIMMeFhTdkBS4IKE+5FYtZXNLT+Qz0lWxCrwSjYTyUhlGAhda0sky8/D2+RFf+YmMQikOxL9BgdqvGXloOfjPXrLuN3UCh/U3a6MTHGSRf7Tnm8J32k9/IjnJyjKtUFOLJsx9AbVZBoInULgkHBQGt4rtUH6gjMzecaG7sLloQMbUSM5bRUWDwIDAQAB",
+    "oauth2": {
+        "client_id": "593915632368-u4680bm9i9e3n2kg45da8ei9tp6j1gio.apps.googleusercontent.com",
+        "client_secret": "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",
+        "scopes": [
+            "https://www.googleapis.com/auth/userinfo.email",
+            "https://www.googleapis.com/auth/userinfo.profile"
+        ]
+    },
+    "content_security_policy":"script-src 'self'  https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com https://apis.google.com/; object-src 'self'"
 }

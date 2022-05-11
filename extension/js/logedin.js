@@ -13,7 +13,7 @@ const armValue = document.getElementById("arm-value");
 const legSlider = document.getElementById("legSlider");
 const legValue = document.getElementById("leg-value");
 document.getElementById("enter-measurement").addEventListener("click", measurements);
-document.getElementById('log-out').addEventListener("click", logout);
+// document.getElementById('log-out').addEventListener("click", logout);
 function measurements () {
     getMesForm.style.display = 'none';
     result.style.display = 'block';
@@ -26,6 +26,13 @@ function reEnter () {
     result.style.display = 'none';
     getMesForm.style.display = 'block';
 }
+document.querySelector('#log-out').addEventListener('click', () => {
+    chrome.runtime.sendMessage({message: 'log_out'}, function(response) {
+        if (response.message === 'success') {
+            window.location.replace("popup.html")
+        }
+    })
+})
 function logout () {
     window.location.href = "popup.html";
 }
