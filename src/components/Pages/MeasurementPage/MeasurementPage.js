@@ -1,8 +1,60 @@
 import React, { Component } from 'react'
-
+import { useNavigate, Link } from 'react-router-dom'
 import './MeasurementPage.css'
+import axios from 'axios'
 
  export class MeasurementPage extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            waist : 0,
+            bust : 0,
+            inseam : 0,
+            armLen : 0,
+            neck : 0,
+            lowHip : 0,
+            status : '',
+            navigate : ''
+        }
+    }
+
+    handleInput = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault()    
+        axios.post(`/measureLP`, 
+            { 
+                'Waist' : this.state.waist,
+                'Bust/Chest' : this.state.bust,
+                'Inside Leg' : this.state.inseam,
+                'Arm Length' : this.state.armLen,
+                'Neckline' : this.state.neck,
+                'Low Hip' : this.state.lowHip 
+            }
+        )
+        .then(
+            (response) => {
+                var result = response.data;
+                this.state.status = result.status
+                console.log(result);
+                if (this.state.status === 'Logout'){
+                    this.state.navigate = '/'
+                }
+                else {
+                    this.state.navigate = '/measurements'
+                }
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+    }
+
+
     render() {
         return (
             <div className='MeasurementPage'>
@@ -60,7 +112,9 @@ import './MeasurementPage.css'
                             </div>      
                         </div> 
                     </div>
-                    <button type="submit" id="enter-measurement" >Submit</button>
+                    <button type="submit" id="enter-measurement" onClick={this.handleSubmit} onSubmit={async (event) => {useNavigate(this.state.navigate);}}>
+                        <Link to='/'>Submit</Link>
+                    </button>
                 </form>
             </div>
             </div>

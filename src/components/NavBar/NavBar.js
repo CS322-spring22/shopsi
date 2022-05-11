@@ -1,14 +1,13 @@
 import './NavBar.css';
 import React, { useState } from 'react'
 import { Link } from 'react-scroll'
-import { Link as Redirect} from 'react-router-dom'
+import { Link as Redirect } from 'react-router-dom'
 import logo from './logo.png'
 
 const Navbar = () => {
   const [click, setClick] = useState(false)
   const handleClick = () => setClick(!click)
   const closeMenu = () => setClick(false)
-  const [loginPopup, setLoginPopup] = useState(false);
 
   return (
     <div className='navheader'>

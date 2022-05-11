@@ -6,6 +6,16 @@
     align-items: center;
 }
 
+.LoginPage {
+    margin-top: 12%;
+    align-items: center;
+}
+
+.LoginPage .logo img {
+    width: 100px;
+    margin-left: 47%;
+}
+
 * {
     margin:0;
     padding: 0;

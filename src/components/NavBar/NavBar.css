@@ -7,7 +7,7 @@
     z-index: 1;
     transition: .3s ease-in;
     overflow: hidden;
-    background-color: rgba(0,0,0,.9);
+    background-color: rgba(0, 0, 0, 0.9);
   }
   
   .navheader .navbar {
@@ -25,12 +25,11 @@
   }
   
   .navheader .nav-menu a {
-    color: #ffffff;
+    color: white;
   }
   
   .navheader .navbar img {
     width: 250px;
-    height: auto;
   }
   
   .navheader .nav-menu {
@@ -41,12 +40,8 @@
     padding: 1rem;
     font-weight: 500;
   }
-  
-  .navheader .nav-item a:hover {
-    padding-bottom: 12px;
-    border-bottom: 3px solid var(--secondary-color);
-  }
 
-  .naveheader .a:visited {
+
+  .navheader .a:visited {
     text-decoration: none;
   }

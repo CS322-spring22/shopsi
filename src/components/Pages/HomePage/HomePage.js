@@ -18,8 +18,8 @@ export class HomePage extends Component {
               Your style. <br />
               Your fit.
             </h1>
-            <a href="https://chrome.google.com/webstore/category/extensions?hl=en">
-              <span className="install-extension-link">Install Extension</span>
+            <a href="https://chrome.google.com/webstore/category/extensions?hl=en"> 
+            Install Extension
             </a>
           </div>
         </div>

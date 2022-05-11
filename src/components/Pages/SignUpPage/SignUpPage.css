@@ -1,6 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Palette+Mosaic&display=swap');
 
+.SignUpPage {
+    margin-top: 12%;
+    align-items: center;
+}
+
+.SignUpPage .logo img {
+    width: 100px;
+    margin-left: 47%;
+}
+
+.SignUpPage a:active {
+    
+}
+
+
 .box {
     display: flex;
     align-items: center;
