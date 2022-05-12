@@ -9,12 +9,12 @@ export class MeasurementPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      waist: 0,
       bust: 0,
-      inseam: 0,
-      armLen: 0,
       neck: 0,
+      waist: 0,
       lowHip: 0,
+      armLen: 0,
+      inseam: 0,
       status: "",
       navigate: "",
     };
@@ -77,9 +77,10 @@ export class MeasurementPage extends Component {
                     max="100"
                     name="bust"
                     value={this.state.bust}
+                    onChange={this.handleInput}
                   />
-                  <div onChange="{handleInput}" class="value" id="bust-value">
-                    0
+                  <div class="value" id="bust-value">
+                    {this.state.bust}
                   </div>
                 </div>
               </div>
@@ -94,9 +95,10 @@ export class MeasurementPage extends Component {
                     max="100"
                     name="neck"
                     value={this.state.neck}
+                    onChange={this.handleInput}
                   />
                   <div class="value" id="neck-value">
-                    0
+                    {this.state.neck}
                   </div>
                 </div>
               </div>
@@ -111,9 +113,10 @@ export class MeasurementPage extends Component {
                     max="100"
                     name="waist"
                     value={this.state.waist}
+                    onChange={this.handleInput}
                   />
                   <div class="value" id="waist-value">
-                    0
+                    {this.state.waist}
                   </div>
                 </div>
               </div>
@@ -128,9 +131,10 @@ export class MeasurementPage extends Component {
                     max="100"
                     name="lowHip"
                     value={this.state.lowHip}
+                    onChange={this.handleInput}
                   />
                   <div class="value" id="hip-value">
-                    0
+                    {this.state.lowHip}
                   </div>
                 </div>
               </div>
@@ -145,9 +149,10 @@ export class MeasurementPage extends Component {
                     max="100"
                     name="armLen"
                     value={this.state.armLen}
+                    onChange={this.handleInput}
                   />
                   <div class="value" id="arm-value">
-                    0
+                    {this.state.armLen}
                   </div>
                 </div>
               </div>
@@ -162,9 +167,10 @@ export class MeasurementPage extends Component {
                     max="100"
                     name="inseam"
                     value={this.state.inseam}
+                    onChange={this.handleInput}
                   />
                   <div class="value" id="leg-value">
-                    0
+                    {this.state.inseam}
                   </div>
                 </div>
               </div>
