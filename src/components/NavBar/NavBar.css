@@ -1,47 +1,55 @@
 .navheader {
-    position: fixed;
-    height: 90px;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    transition: .3s ease-in;
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.9);
-  }
-  
-  .navheader .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1240px;
-    margin: auto;
-    height: 100%;
-    padding: 0 1rem;
-  }
+  position: fixed;
+  height: 90px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: 0.3s ease-in;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.9);
+}
 
-  .navheader .navbar .logo img {
-    width: 100px;
-  }
-  
-  .navheader .nav-menu a {
-    color: white;
-  }
-  
-  .navheader .navbar img {
-    width: 250px;
-  }
-  
-  .navheader .nav-menu {
-    display: flex;
-  }
-  
-  .navheader .nav-item {
-    padding: 1rem;
-    font-weight: 500;
-  }
+.navheader .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1240px;
+  margin: auto;
+  height: 100%;
+  padding: 0 1rem;
+}
 
+.navheader .navbar .logo img {
+  width: 100px;
+}
 
-  .navheader .a:visited {
-    text-decoration: none;
-  }
+.navheader .nav-menu {
+  display: flex;
+}
+
+.navheader .nav-item {
+  padding: 1rem;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.navheader a {
+  text-decoration: none;
+  color: white;
+  background-color: none;
+}
+
+.navheader ul {
+  list-style-type: none;
+}
+
+.navheader .nav-item a:hover {
+  padding-bottom: 12 px;
+  border-bottom: 3px solid white;
+  cursor: pointer;
+}
+
+.navheader a:active {
+  background-color: none;
+}

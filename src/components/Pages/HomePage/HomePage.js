@@ -18,8 +18,8 @@ export class HomePage extends Component {
               Your style. <br />
               Your fit.
             </h1>
-            <a href="https://chrome.google.com/webstore/category/extensions?hl=en"> 
-            Install Extension
+            <a href="https://chrome.google.com/webstore/category/extensions?hl=en">
+              Install Extension
             </a>
           </div>
         </div>
@@ -46,7 +46,7 @@ export class HomePage extends Component {
 
         <div className="footer"></div>
       </div>
-    )
+    );
   }
 }
 export default HomePage;
