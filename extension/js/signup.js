@@ -11,6 +11,7 @@ function signUp () {
     var getLastName = document.getElementById("lastName").value
     var getRegUsername = document.getElementById("regUsername").value
     var getRegPassword = document.getElementById("regPassword").value
+    //send data to backend here
     info.innerHTML = "First name: "+ getFirstName + " Last name: " + getLastName + "<br>"
                     + "Username: " + getRegUsername + "Password: " + getRegPassword ;
 }

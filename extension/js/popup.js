@@ -24,6 +24,7 @@ function getInfo () {
             if (username == infoObj[i].username && password == infoObj[i].password) {
                 console.log("log in")
                 getLogForm.style.display = 'none'
+                //send data to backend here
                 window.location.href ="index.html"
             }
         }
