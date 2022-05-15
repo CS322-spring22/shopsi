@@ -2,6 +2,7 @@ import React from "react";
 import "./HomePage.css";
 import Navbar from "../../NavBar/NavBar";
 import { Component } from "react";
+import aboutPic from "./about.jpg";
 
 export class HomePage extends Component {
   render() {
@@ -34,6 +35,9 @@ export class HomePage extends Component {
               No more returns. Shopsi automatically selects the size you want
               based on your preferences. Online shopping has never been easier!
             </p>
+            <div className="image-wrapper">
+              <img src={aboutPic} alt={"about"} />
+            </div>
           </div>
         </div>
 

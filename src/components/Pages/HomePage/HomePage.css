@@ -64,12 +64,29 @@ a:visited {
 /* About */
 .homepage .about {
   font-family: "Montserrat", sans-serif;
+  background-color: rgb(255, 255, 255);
 }
 
 .homepage .about-body {
   text-align: left;
-  margin-left: 1%;
-  width: 25%;
+  display: flex;
+}
+
+.homepage .about-body p {
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 22%;
+  margin-top: 4%;
+  width: 20%;
+}
+
+.homepage .about-body .image-wrapper {
+  margin-left: 20%;
+}
+
+.homepage .about-body img {
+  height: 250px;
+  width: 300px;
 }
 
 /* How-to */
