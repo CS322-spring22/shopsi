@@ -1,7 +1,20 @@
 import React from "react";
 
 function Logout() {
-  return <button type='button' className="logout">Logout</button>;
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios.post('https://anastatiad.pythonanywhere.com/logoutLP', {
+      'Status' : 'logout'
+    }).then(
+      (response) => {
+        console.log(response)
+      }, (error) => {
+        console.log(error)
+      }
+    )
+  }
+  
+  return <button type='submit' onClick={handleSubmit} className="logout">Logout</button>;
 }
 
-export default Logout;
+export default Logout

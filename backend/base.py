@@ -121,6 +121,16 @@ def measureLP():
                 return {'Status' : 'No user logged in'}
     return {'Maybe this works too?': 'meh'}
 
+@api.route('/logoutLP', methods=['POST', 'GET'])
+@cross_origin(allow_headers='*', supports_credentials=True, always_send=True, automatic_options=True)
+def logoutLP():
+    if request.method == 'POST':
+        res = request.json
+        if res['Status'] == 'logout' and 'user' in session:
+            return {'Status' : 'Successful Logout'}
+        return {'Status' : 'No user logged in'}
+    return {'Maybe this works too?': 'meh'}
+
 #EXTENSION-EXTENSION-EXTENSION-EXTENSION-EXTENSION-EXTENSION-EXTENSION
 # login
 # signup
