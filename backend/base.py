@@ -18,7 +18,10 @@ def updateMeas(measurement, user, number):
     users = {}
     with open('users.json', 'r') as f:
         users = json.load(f)
-    if users[user]['measurements'][measurement] != number:
+    if measurement in users[user]['measurements']:
+        if users[user]['measurements'][measurement] != number:
+            users[user]['measurements'][measurement] = number
+    else:
         users[user]['measurements'][measurement] = number
     with open('users.json', 'w') as f:
         json.dump(users, f)
@@ -51,23 +54,24 @@ def signupLP():
     if request.method == 'POST':
         if (request.json != {}):
             users = {}
+            userL = request.json
             if os.stat("/mnt/c/Users/nvg-1/shopsi/backend/users.json").st_size == 0:
                 users[0] = request.json
-                session['user'] = request.json
+                session['user'] = userL
                 with open('users.json', 'w') as f:
                     json.dump(users, f)
                 return {'Status' : 'Successful Signup!'}
             else:
                 with open('users.json', 'r') as f:
                     users = json.load(f)
-                if request.json in users.values():
+                if userL in users.values():
                     return {'Status' : 'Existing User'}
                 else:
                     num = users.__len__()
-                    users[num] = request.json
+                    users[num] = userL
                     with open('users.json', 'w') as f:
                         json.dump(users, f)
-                    session['user'] = request.json
+                    session['user'] = userL
                     return {'Status' : 'Successful Signup!'}  
     return {'Maybe this works too?': 'meh'}
 
@@ -85,9 +89,9 @@ def loginLP():
                     users = json.load(f)
                 for user in users:
                     if users[user]['username'] == userL['username'] and users[user]['password'] == userL['password']:
-                        session['user'] = request.json
+                        session['user'] = userL
                         return {'Status' : 'Successful Login'}
-                return request.json 
+                return {'Status' : 'User does not exist'}
     return {'Maybe this works too?': 'meh'}
 
 @api.route('/measureLP', methods=['POST', 'GET'])
@@ -96,23 +100,24 @@ def measureLP():
     if request.method == 'POST':
         if (request.json != {}):
             users = {}
+            userL = request.json
             if os.stat("/mnt/c/Users/nvg-1/shopsi/backend/users.json").st_size == 0:
                 return {'Status' : 'User does not exist'}
             else:
                 with open('users.json', 'r') as f:
                     users = json.load(f)
                 if 'user' in session:
-                    if session['user'] == request.json:
-                        for user in users.keys():
-                            if users[user]['username'] == request.json['username'] and users[user]['password'] == request.json['password']:
-                                updateMeas('Waist', user, request.json['Waist'])
-                                updateMeas('Bust/Chest', user, request.json['Bust/Chest'])
-                                updateMeas('Inseam', user, request.json['Inside Leg'])
-                                updateMeas('Arm Length', user, request.json['Arm Length'])
-                                updateMeas('Neckline', user, request.json['Neckline'])
-                                updateMeas('Low Hip', user, request.json['Low Hip'])
-                                return {'Status' : 'Updated Measurements'}
-                        return {'Status' : 'User not logged in'}
+                    userU = session['user']
+                    for user in users:
+                        if users[user]['username'] == userU['username'] and users[user]['password'] == userU['password']:
+                            updateMeas('Waist', user, userL['Waist'])
+                            updateMeas('Bust/Chest', user, userL['Bust/Chest'])
+                            updateMeas('Inseam', user, userL['Inside Leg'])
+                            updateMeas('Arm Length', user, userL['Arm Length'])
+                            updateMeas('Neckline', user, userL['Neckline'])
+                            updateMeas('Low Hip', user, userL['Low Hip'])
+                            return {'Status' : 'Updated Measurements'}
+                    return {'Status' : 'User does not exist'}
                 return {'Status' : 'No user logged in'}
     return {'Maybe this works too?': 'meh'}
 
@@ -127,7 +132,7 @@ def loginEXT():
     if request.method == 'POST':
         username = request.form.get("username")
         password = request.form.get("password")
-        if (os.stat("/mnt/c/Users/nvg-1/shopsi/backend/users.json").st_size == 0):
+        if (os.stat("../shopsi/backend/users.json").st_size == 0):
             return render_template("signup.html")
         else:
             with open('users.json', 'r') as f:
@@ -145,7 +150,7 @@ def signupEXT():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        if (os.stat("/mnt/c/Users/nvg-1/shopsi/backend/users.json").st_size == 0):
+        if (os.stat("../shopsi/backend/users.json").st_size == 0):
             users[0]['username'] = username
             users[0]['password'] = password
             users[0]['measurements'] = {}
