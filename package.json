@@ -2,7 +2,7 @@
   "name": "shopsi",
   "version": "0.1.0",
   "private": true,
-  "proxy":"https://anastatiad.pythonanywhere.com/",
+  "proxy":"http://127.0.0.1:5000/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4",

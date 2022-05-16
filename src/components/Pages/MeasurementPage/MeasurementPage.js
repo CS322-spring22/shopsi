@@ -29,7 +29,7 @@ export class MeasurementPage extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post(`https://anastatiad.pythonanywhere.com/measureLP`, {
+      .post(`/measureLP`, {
         'Waist': this.state.waist,
         "Bust/Chest": this.state.bust,
         "Inside Leg": this.state.inseam,

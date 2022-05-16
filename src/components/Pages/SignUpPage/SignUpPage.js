@@ -25,7 +25,7 @@ function SignUpPage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post(`https://anastatiad.pythonanywhere.com/signupLP`, {
+      .post(`/signupLP`, {
         'username': username,
         'password': password,
         'measurements': measurements,
