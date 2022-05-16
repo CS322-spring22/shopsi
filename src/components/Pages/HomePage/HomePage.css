@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Palette+Mosaic&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Header */
+.homepage .header a:link,
+a:visited {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  border-radius: 5px;
+  width: 145px;
+  background: #a450f8;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+.homepage .header a:hover {
+  background-color: black;
+  cursor: pointer;
+  color: white;
+}
+
+.homepage .header {
+  padding-top: 6%;
+  height: 45%;
+  background-image: url("purple.webp");
+  background-color: #c184ff;
+}
+
+.homepage .header-title {
+  text-align: center;
+  font-size: 35px;
+  font-family: "Palette Mosaic", cursive;
+  color: white;
+}
+
+.homepage .header-body {
+  color: white;
+  margin-left: 1%;
+}
+
+.homepage .header-body h1 {
+  font-size: 50px;
+  font-family: "Montserrat";
+}
+
+.homepage .header-body h2 {
+  text-align: center;
+  font-size: 35px;
+  font-family: "Palette Mosaic", cursive;
+}
+
+/* Content */
+.homepage .content-header {
+  text-align: center;
+}
+
+/* About */
+.homepage .about {
+  font-family: "Montserrat", sans-serif;
+  background-color: rgb(255, 255, 255);
+}
+
+.homepage .about-body {
+  text-align: left;
+  display: flex;
+}
+
+.homepage .about-body p {
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 22%;
+  margin-top: 4%;
+  width: 20%;
+}
+
+.homepage .about-body .image-wrapper {
+  margin-left: 20%;
+}
+
+.homepage .about-body img {
+  height: 250px;
+  width: 300px;
+}
+
+/* How-to */
+.homepage .how-to {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Footer */
+.homepage .footer {
+  position: absolute;
+  width: 100%;
+  top: 97%;
+  height: 10%;
+}

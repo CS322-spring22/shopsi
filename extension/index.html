@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/index.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopSi</title>
+</head>
+<body class="extension">
+    <img src="logo.png" class="logo">
+    <h1 class="header active">Shop$i</h1>
+    <h3 class="desc">Shop with your size</h3><br></br>
+    <div class="measurement">
+        <form method="post" id="logedin-form" action='{{ url_for("measureEXT")}}' method="post">
+            <button type="button" id="log-out">Log out</button>
+            <h2>Enter your measurements</h1>
+                
+            <div class="measurements">
+                <div class="box">
+                    <label class="mesName">Bust/Chest</label>
+                    <div class="sliderBar">
+                        <input type="range" id="bustSlider" name="bust/chest" min="0" max ="100" value ="0">
+                        <div class ="value" id="bust-value">0</div>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <label class="mesName">Neckline</label>
+                    <div class="sliderBar">
+                        <input type="range" id="neckSlider" name="neckline" min="0" max ="100" value ="0">
+                        <div class ="value" id="neck-value">0</div>
+                    </div>
+                </div>
+                <div class="box">
+                    <label class="mesName">Waist</label>
+                    <div class="sliderBar">
+                        <input type="range" id="waistSlider" name="waist" min="0" max ="100" value ="0">
+                        <div class ="value" id="waist-value">0</div>
+                    </div>
+                </div>
+                <div class="box">
+                    <label class="mesName">Low Hip</label>
+                    <div class="sliderBar">
+                        <input type="range"class="sliderr" id="hipSlider" name="lowHip" min="0" max ="100" value ="0">
+                        <div class ="value" id="hip-value">0</div>
+                    </div>
+                </div>
+                <div class="box">
+                    <label class="mesName">Arm length</label>
+                    <div class="sliderBar">
+                        <input type="range" id="armSlider" name="armLength" min="0" max ="100" value ="0">
+                        <div class ="value" id="arm-value">0</div></div>
+                </div>
+                <div class="box">
+                    <label class="mesName">Inseam</label>
+                    <div class="sliderBar">
+                        <input type="range" id="legSlider" name="inseam" min="0" max ="100" value ="0">
+                        <div class ="value" id="leg-value">0</div>
+                    </div>
+                    
+                </div> 
+            </div>
+            
+            <button type="button" id="enter-measurement" >Submit</button>
+        </form>
+        <div id="results">
+        </div>
+    </div>
+    <script src="js/logedin.js"></script>
+</body>
+</html>
+

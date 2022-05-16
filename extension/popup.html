@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/popup.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopSi</title>
+</head>
+<body class="extension">
+    <div class="container">
+        <img src="logo.png" class="logo">
+        <h1 class="header active">Shop$i</h1>
+        <h3 class="desc">Shop with your size</h3><br></br>
+        <div class="login">
+            <form method="post" id="login-form" action='{{ url_for("loginEXT")}}'>
+                <h2>Welcome back!</h2>
+                <div class="text_field">
+                    <input type="text" id="username" name="username" required>
+                    <span></span>
+                    <label>Username</label>
+                </div>
+                <div class="text_field">
+                    <input type="text" style="-webkit-text-security: disc;" id="password" name="password" required>
+                    <span></span>
+                    <label>Password</label>
+                </div>
+                <div class="forgotPass">Forgot password?</div>
+                <button type="button" id="log-in">Log in</button>
+                <div class="wrongPass" id="wrongPass">Wrong authentication</div>
+                <div class="missingFields" id="missingFields">Missing fields</div>
+                <div class="signup_link">
+                    Not a member yet? <button type="button" id="sign-up">Sign up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/popup.js"></script>
+</body>
+</html>

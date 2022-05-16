@@ -5,7 +5,14 @@
     "version": "1.0",
     "action": {
         "default_icon": "logo.png",
-        "default_popup": "popup.html"
+        "default_popup": "intro.html"
     },
-    "permissions": []
+    "permissions": [],
+    "content_scripts" : [
+        {
+            "matches" : ["https://www2.hm.com/en_us/*", "https://us.shein.com/*"],
+            "css" : [],
+            "js" : ["scrape.js"]
+        }
+    ]
 }
