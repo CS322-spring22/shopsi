@@ -2,6 +2,7 @@ import React from "react";
 import "./HomePage.css";
 import Navbar from "../../NavBar/NavBar";
 import { Component } from "react";
+import aboutPic from "./about.jpg";
 
 export class HomePage extends Component {
   render() {
@@ -19,7 +20,7 @@ export class HomePage extends Component {
               Your fit.
             </h1>
             <a href="https://chrome.google.com/webstore/category/extensions?hl=en">
-              <span className="install-extension-link">Install Extension</span>
+              Install Extension
             </a>
           </div>
         </div>
@@ -34,6 +35,9 @@ export class HomePage extends Component {
               No more returns. Shopsi automatically selects the size you want
               based on your preferences. Online shopping has never been easier!
             </p>
+            <div className="image-wrapper">
+              <img src={aboutPic} alt={"about"} />
+            </div>
           </div>
         </div>
 
@@ -46,7 +50,7 @@ export class HomePage extends Component {
 
         <div className="footer"></div>
       </div>
-    )
+    );
   }
 }
 export default HomePage;
