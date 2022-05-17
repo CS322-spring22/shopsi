@@ -71,7 +71,7 @@ export class MeasurementPage extends Component {
         <div class="measurement">
           <form>
             <h2>Enter your measurements</h2>
-            <br />
+            {/* <br />
             <div className="switch">
               <div className="incm-switch">
                 IN
@@ -82,7 +82,7 @@ export class MeasurementPage extends Component {
                 M
                 <Switch />F
               </div>
-            </div>
+            </div> */}
             <div class="measurements">
               <div class="box">
                 <label class="mesName">Bust/Chest</label>

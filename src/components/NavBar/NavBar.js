@@ -37,7 +37,19 @@ const Navbar = () => {
               duration={500}
               onClick={closeMenu}
             >
-              How To
+              Using
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              to="how-to-mes"
+              spy={true}
+              smooth={true}
+              offset={-90}
+              duration={500}
+              onClick={closeMenu}
+            >
+              Measuring
             </Link>
           </li>
           <li className="nav-item">
