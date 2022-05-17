@@ -7,12 +7,10 @@ function Switch() {
   const onToggle = () => setIsToggled(!isToggled);
   return (
     <>
-      IN
       <label className="toggle-switch">
         <input type="checkbox" checked={isToggled} onChange={onToggle} />
         <span className="switch" />
       </label>
-      CM
     </>
   );
 }

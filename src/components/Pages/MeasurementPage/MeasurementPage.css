@@ -58,7 +58,14 @@ img.logo {
 .MeasurementPage .switch,
 .label {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+}
+
+.switch .mf-switch{
+  padding-top: 1%;
+  padding-right: 1%;
 }
 .measurements {
   display: flex;
