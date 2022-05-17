@@ -4,6 +4,8 @@ import { useState } from "react";
 import "./MeasurementPage.css";
 import axios from "axios";
 import logo from "./logo.png";
+import Logout from "../../Logout/Logout";
+import Switch from "../../Switch/Switch";
 
 export class MeasurementPage extends Component {
   constructor(props) {
@@ -57,6 +59,9 @@ export class MeasurementPage extends Component {
   render() {
     return (
       <div className="MeasurementPage">
+        <div className="buttons">
+          <Logout />
+        </div>
         <a href="/" className="logo">
           <img src={logo} alt="logo" />
         </a>
@@ -66,6 +71,10 @@ export class MeasurementPage extends Component {
         <div class="measurement">
           <form>
             <h2>Enter your measurements</h2>
+            <br />
+            <div className="switch">
+              <Switch />
+            </div>
             <div class="measurements">
               <div class="box">
                 <label class="mesName">Bust/Chest</label>
@@ -175,16 +184,17 @@ export class MeasurementPage extends Component {
                 </div>
               </div>
             </div>
-            <button
-              type="submit"
-              id="enter-measurement"
-              onClick={this.handleSubmit}
-              onSubmit={async (event) => {
-                useNavigate(this.state.navigate);
-              }}
-            >
-              <Link to="/">Submit</Link>
-            </button>
+            <div className="buttons">
+              <button
+                type="submit"
+                onClick={this.handleSubmit}
+                onSubmit={async (event) => {
+                  useNavigate(this.state.navigate);
+                }}
+              >
+                <Link to="/">Submit</Link>
+              </button>
+            </div>
           </form>
         </div>
       </div>

@@ -45,7 +45,12 @@ export class HomePage extends Component {
           <div className="content-header">
             <h2>How to use Shop$i</h2>
           </div>
-          <div className="measurements"></div>
+          <div className="how-to-body">
+            <h3 id="step1">Step 1. Install the extension</h3>
+            <h3 id="step2">Step 2. Sign up / Login</h3>
+            <h3 id="step3">Step 3. Update your measurements</h3>
+            <h3 id="step4">Step 4. Shop!</h3>
+          </div>
         </div>
 
         <div className="footer"></div>

@@ -63,14 +63,14 @@ export class LoginPage extends Component {
               <div className="box">
                 <label className="infoName">Username</label>
                 <div className="infoBox">
-                  <input type="text" id="usernameText" />
+                  <input type="text" id="usernameText" required />
                 </div>
               </div>
 
               <div className="box">
                 <label className="infoName">Password</label>
                 <div className="infoBox">
-                  <input type="password" id="passwordText" />
+                  <input type="password" id="passwordText" required />
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@ export class LoginPage extends Component {
               }}
               id="enter-info"
             >
-              <Link to={this.state.navigate}>Submit</Link>
+              <Link to={this.state.navigate}>Login</Link>
             </button>
           </form>
         </div>

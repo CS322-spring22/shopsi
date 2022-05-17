@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap");
+
 .navheader {
   position: fixed;
   height: 90px;
@@ -8,6 +10,7 @@
   transition: 0.3s ease-in;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.9);
+  font-family: "Montserrat";
 }
 
 .navheader .navbar {
@@ -38,6 +41,23 @@
   text-decoration: none;
   color: white;
   background-color: none;
+}
+
+.navheader button {
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.navheader button:hover {
+  margin-bottom: -3px;
+  border-bottom: 3px solid white;
 }
 
 .navheader ul {

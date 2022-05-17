@@ -65,28 +65,28 @@ function SignUpPage() {
             <div className="box">
               <label className="infoName">First Name</label>
               <div className="infoBox">
-                <input type="text" id="firstNameText" />
+                <input type="text" id="firstNameText" required/>
               </div>
             </div>
 
             <div className="box">
               <label className="infoName">Last Name</label>
               <div className="infoBox">
-                <input type="text" id="lastNameText" />
+                <input type="text" id="lastNameText" required/>
               </div>
             </div>
 
             <div className="box">
               <label className="infoName">Username</label>
               <div className="infoBox">
-                <input type="text" id="usernameText" />
+                <input type="text" id="usernameText" required/>
               </div>
             </div>
 
             <div className="box">
               <label className="infoName">Password</label>
               <div className="infoBox">
-                <input type="password" id="passwordText" />
+                <input type="password" id="passwordText" required/>
               </div>
             </div>
           </div>

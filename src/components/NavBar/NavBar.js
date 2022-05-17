@@ -21,7 +21,7 @@ const Navbar = () => {
               to="about"
               spy={true}
               smooth={true}
-              offset={50}
+              offset={-90}
               duration={500}
               onClick={closeMenu}
             >
@@ -33,7 +33,7 @@ const Navbar = () => {
               to="how-to"
               spy={true}
               smooth={true}
-              offset={50}
+              offset={-90}
               duration={500}
               onClick={closeMenu}
             >
@@ -50,9 +50,9 @@ const Navbar = () => {
               Login
             </Redirect>
           </li>
-          {/* <li className="nav-item">
+          <li className="nav-item">
             <Logout />
-          </li> */}
+          </li>
         </ul>
       </nav>
     </div>
