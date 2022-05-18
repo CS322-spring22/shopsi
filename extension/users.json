@@ -3,12 +3,12 @@
         "username": "doja",
         "password": "cat",
         "measurements": {
-            "Waist": 0,
-            "Bust/Chest": 0,
-            "Inseam": 0,
-            "Arm Length": 0,
-            "Neckline": 0,
-            "Low Hip": 0
+            "Waist": 15,
+            "Bust/Chest": 20,
+            "Inseam": 40,
+            "Arm Length": 50,
+            "Neckline": 30,
+            "Low Hip": 20
         }
     },
     "1": {
@@ -99,18 +99,6 @@
     "18": {
         "username": "dav",
         "password": "dav",
-        "measurements": {
-            "Waist": 0,
-            "Bust/Chest": 0,
-            "Inseam": 0,
-            "Arm Length": 0,
-            "Neckline": 0,
-            "Low Hip": 0
-        }
-    },
-    "19": {
-        "username": "savage",
-        "password": "fenty",
         "measurements": {}
     }
 }
