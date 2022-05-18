@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Logout() {
   const handleSubmit = (event) => {
@@ -16,7 +17,9 @@ function Logout() {
     )
   }
 
-  return <button type='submit' onClick={handleSubmit} className="logout">Logout</button>;
+  return <button type='submit' onClick={handleSubmit} className="logout">
+    <Link to={'/'}>Logout</Link>
+  </button>;
 }
 
 export default Logout

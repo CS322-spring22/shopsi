@@ -17,6 +17,7 @@ function SignUpPage() {
     'Low Hip' : 0
   });
   const [navigate, setNav] = useState("/measurements");
+  const [log, setLog] = useState('');
   let nav = useNavigate();
 
   const handleInput = (event) => {
@@ -43,7 +44,7 @@ function SignUpPage() {
         'username': username,
         'password': password,
         'measurements': measurements,
-        'logged' : ''
+        'logged' : log
       })
       .then(
         (response) => {
@@ -52,8 +53,10 @@ function SignUpPage() {
           console.log(result);
           if (status === "Existing User") {
             setNav("/login");
+            setLog('false')
           } else {
             setNav("/measurements");
+            setLog('true')
           }
         },
         (error) => {

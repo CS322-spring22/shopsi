@@ -124,11 +124,12 @@ export class MeasurementPage extends Component {
       [event.target.name]: event.target.value,
     });
   };
+  
   handleSubmit = (event) => {
     event.preventDefault();
     axios
       .post(`https://anastatiad.pythonanywhere.com/measureLP`, {
-        Waist: this.state.waist,
+        'Waist': this.state.waist,
         "Bust/Chest": this.state.bust,
         "Inside Leg": this.state.inseam,
         "Arm Length": this.state.armLen,

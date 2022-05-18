@@ -57,7 +57,7 @@ def signupLP():
             userL = request.json
             if os.stat("/home/anastatiaD/shopsi/backend/users.json").st_size == 0:
                 users[0] = request.json
-                users[0]['logged'] = 'true'
+                users[0]['logged'] = userL['username']
                 session['user'] = userL
                 with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
                     json.dump(users, f)
@@ -70,7 +70,7 @@ def signupLP():
                 else:
                     num = users.__len__()
                     users[num] = userL
-                    users[num]['logged'] = 'true'
+                    users[num]['logged'] = userL['username']
                     with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
                         json.dump(users, f)
                     session['user'] = userL
@@ -91,7 +91,7 @@ def loginLP():
                     users = json.load(f)
                 for user in users:
                     if users[user]['username'] == userL['username'] and users[user]['password'] == userL['password']:
-                        users[user]['logged'] = 'true'
+                        users[user]['logged'] = userL['username']
                         with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
                             json.dump(users, f)
                         session['user'] = userL
@@ -116,13 +116,14 @@ def measureLP():
                     if users[user]['username'] == userL['username'] and users[user]['password'] == userL['password']:
                         return users[user]['measurements']
                 return {'Status' : 'User does not exist'}
-            if os.stat("/home/anastatiaD/shopsi/backend/users.json").st_size == 0:
+            elif os.stat("/home/anastatiaD/shopsi/backend/users.json").st_size == 0:
                 return {'Status' : 'User does not exist'}
             else:
                 with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
                     users = json.load(f)
                 for user in users:
-                    if users[user]['logged'] == 'true':
+                    uzer = users[user]['username']
+                    if users[user]['logged'] == uzer:
                         updateMeas('Waist', user, userL['Waist'])
                         updateMeas('Bust/Chest', user, userL['Bust/Chest'])
                         updateMeas('Inseam', user, userL['Inside Leg'])
@@ -144,7 +145,8 @@ def logoutLP():
             users = json.load(f)
         if stat['Status'] == 'logout':
             for user in users:
-                if users[user]['logged'] == 'true':
+                uzer = users[user]['username']
+                if users[user]['logged'] == uzer:
                     users[user]['logged'] = 'false'
                     with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
                         json.dump(users, f)
