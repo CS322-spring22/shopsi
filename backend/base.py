@@ -116,34 +116,42 @@ def measureLP():
                     if users[user]['username'] == userL['username'] and users[user]['password'] == userL['password']:
                         return users[user]['measurements']
                 return {'Status' : 'User does not exist'}
+            if os.stat("/home/anastatiaD/shopsi/backend/users.json").st_size == 0:
+                return {'Status' : 'User does not exist'}
             else:
-                if os.stat("/home/anastatiaD/shopsi/backend/users.json").st_size == 0:
-                    return {'Status' : 'User does not exist'}
-                else:
-                    with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
-                        users = json.load(f)
-                    for user in users:
-                        if users[user]['logged'] == 'true':
-                            updateMeas('Waist', user, userL['Waist'])
-                            updateMeas('Bust/Chest', user, userL['Bust/Chest'])
-                            updateMeas('Inseam', user, userL['Inside Leg'])
-                            updateMeas('Arm Length', user, userL['Arm Length'])
-                            updateMeas('Neckline', user, userL['Neckline'])
-                            updateMeas('Low Hip', user, userL['Low Hip'])
-                            return {'Status' : 'Updated Measurements'}
-                    return {'Status' : 'User does not exist'}
-    elif request.method == 'GET':
-        print("req", request.args.get('param1'))
-        users = {}
-        with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
-            users = json.load(f)
-        for user in users:
-            if users[user]['username'] == request.args.get('param1') and users[user]['password'] == request.args.get('param2'):
-                return users[user]['measurements']
-        return {'Status' : 'User does not exist'}
+                with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
+                    users = json.load(f)
+                for user in users:
+                    if users[user]['logged'] == 'true':
+                        updateMeas('Waist', user, userL['Waist'])
+                        updateMeas('Bust/Chest', user, userL['Bust/Chest'])
+                        updateMeas('Inseam', user, userL['Inside Leg'])
+                        updateMeas('Arm Length', user, userL['Arm Length'])
+                        updateMeas('Neckline', user, userL['Neckline'])
+                        updateMeas('Low Hip', user, userL['Low Hip'])
+                        return {'Status' : 'Updated Measurements'}
+                return {'Status' : 'User does not exist'}
     else:
         return {'Maybe this works too?': 'meh'}
 
+@api.route('/logoutLP', methods=['POST', 'GET'])
+@cross_origin(allow_headers='*', supports_credentials=True, always_send=True, automatic_options=True)
+def logoutLP():
+    if request.method == 'POST':
+        stat = request.json
+        users = {}
+        with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
+            users = json.load(f)
+        if stat['Status'] == 'logout':
+            for user in users:
+                if users[user]['logged'] == 'true':
+                    users[user]['logged'] = 'false'
+                    with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
+                        json.dump(users, f)
+                    return {'Status' : 'Logged Out'}
+            return {'Status' : 'No users logged in'}
+        return {'Status' : 'no clue how this happened'}
+    return {'Status' : 'request method isnt post'}
 #EXTENSION-EXTENSION-EXTENSION-EXTENSION-EXTENSION-EXTENSION-EXTENSION
 # login
 # signup

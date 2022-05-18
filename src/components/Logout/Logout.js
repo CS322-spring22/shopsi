@@ -4,11 +4,12 @@ import axios from "axios";
 function Logout() {
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('/logoutLP', {
+    axios.post('https://anastatiad.pythonanywhere.com/logoutLP', {
       'Status' : 'logout'
     }).then(
       (response) => {
-        console.log(response)
+        var res = response.data
+        console.log(res)
       }, (error) => {
         console.log(error)
       }
