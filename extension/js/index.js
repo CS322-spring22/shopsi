@@ -27,7 +27,7 @@ document.getElementById('edit').addEventListener("click", edit);
 getResults()
 function getResults() {
     if (getMeasure['Bust/Chest'] == 0 && getMeasure['Neckline'] == 0 && getMeasure['Waist'] == 0 && getMeasure['Low Hip'] == 0 && getMeasure['Arm Length'] == 0 && getMeasure['Inseam'] == 0) {
-        resultTop.innerHTML = 'Please provide your measurements'
+        resultTop.innerHTML = 'Please provide your measurements <br> (in cm)'
     } else {
         // resultTop.innerHTML = getMeasure['Bust/Chest'] + "<br>" +
         // getMeasure['Neckline'] + "<br>" +

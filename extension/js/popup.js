@@ -11,12 +11,17 @@ var infoObj = [
 var getLogForm = document.getElementById("login-form")
 var wrongPass = document.getElementById("wrongPass")
 var missingFields = document.getElementById("missingFields")
-document.getElementById('sign-up').addEventListener("click", signUp)
+// document.getElementById('sign-up').addEventListener("click", signUp)
 wrongPass.style.display = 'none'
 missingFields.style.display = 'none'
 document.getElementById("log-in").addEventListener("click", getInfo)
 var isLoggedIn = localStorage.getItem('isShopsiLoggedIn')
 console.log(isLoggedIn)
+window.addEventListener('click',function(e){
+    if(e.target.href!==undefined){
+      chrome.tabs.create({url:e.target.href})
+    }
+  })
 if (isLoggedIn == 'true') {
     console.log('chuyen')
 }

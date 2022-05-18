@@ -7,5 +7,7 @@
         "default_icon": "logo.png",
         "default_popup": "intro.html"
     },
-    "permissions": []
+    "permissions": [
+        "tabs"
+    ]
 }
