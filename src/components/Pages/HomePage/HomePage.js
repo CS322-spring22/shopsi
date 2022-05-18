@@ -63,7 +63,7 @@ export class HomePage extends Component {
               <h2>Use the guide to measure each part of your body</h2>
               <div className="guide-steps-body">
                 <p><strong>1. Bust/Chest:</strong> Measure your chest over the fullest part.</p>
-                <p><strong>2. Waist:</strong>Measure at the narrowest point.</p>
+                <p><strong>2. Waist:</strong> Measure at the narrowest point.</p>
                 <p><strong>3. Low hip:</strong> Measure around the fullest part of your hip.</p>
                 <p><strong>4. Inside leg:</strong> Inside leg is measured from the crotch to the floor</p>
                 <p><strong>Arm length:</strong> Measure from your shoulder point to your wrist.</p>

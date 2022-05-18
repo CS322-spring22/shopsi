@@ -112,6 +112,15 @@ img.logo {
   font-size: 16px;
 }
 
+.MeasurementPage .user-size  {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5%;
+  font-size: 30px;
+}
+
 .MeasurementPage .buttons {
   display: flex;
   flex-direction: column;
