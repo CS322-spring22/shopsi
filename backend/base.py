@@ -4,7 +4,7 @@ from flask_cors import CORS, cross_origin
 import json
 import os
 
-template_dir = os.path.abspath('/mnt/c/Users/nvg-1/shopsi/extension')
+template_dir = os.path.abspath('/home/anastatiaD/shopsi/extension/templates')
 api = Flask(__name__, template_folder=template_dir)
 api.config['CORS_HEADERS'] = 'Content-Type'
 api.config["SESSION_PERMANENT"] = False
@@ -16,27 +16,27 @@ Session(api)
 
 def updateMeas(measurement, user, number):
     users = {}
-    with open('users.json', 'r') as f:
+    with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
         users = json.load(f)
     if measurement in users[user]['measurements']:
         if users[user]['measurements'][measurement] != number:
             users[user]['measurements'][measurement] = number
     else:
         users[user]['measurements'][measurement] = number
-    with open('users.json', 'w') as f:
+    with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
         json.dump(users, f)
     
 @api.route('/numUsers')
 def getUsers():
     users = {}
-    with open('users.json', 'r') as f:
+    with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
         users = json.load(f)
     return { 'number' : users.__len__()}
 
 @api.route('/profile')
 def my_profile():
     users = {}
-    with open('users.json', 'r') as f:
+    with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
         users = json.load(f)
     res = {}
     res['name'] = users['0']['username']
@@ -55,21 +55,21 @@ def signupLP():
         if (request.json != {}):
             users = {}
             userL = request.json
-            if os.stat("/mnt/c/Users/nvg-1/shopsi/backend/users.json").st_size == 0:
+            if os.stat("/mnt/c/Users/nvg-1/shopsi/backend//home/anastatiaD/shopsi/backend/users.json").st_size == 0:
                 users[0] = request.json
                 session['user'] = userL
-                with open('users.json', 'w') as f:
+                with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
                     json.dump(users, f)
                 return {'Status' : 'Successful Signup!'}
             else:
-                with open('users.json', 'r') as f:
+                with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
                     users = json.load(f)
                 if userL in users.values():
                     return {'Status' : 'Existing User'}
                 else:
                     num = users.__len__()
                     users[num] = userL
-                    with open('users.json', 'w') as f:
+                    with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
                         json.dump(users, f)
                     session['user'] = userL
                     return {'Status' : 'Successful Signup!'}  
@@ -82,10 +82,10 @@ def loginLP():
         if (request.json != {}):
             users = {}
             userL = request.json
-            if os.stat("/mnt/c/Users/nvg-1/shopsi/backend/users.json").st_size == 0:
+            if os.stat("/mnt/c/Users/nvg-1/shopsi/backend//home/anastatiaD/shopsi/backend/users.json").st_size == 0:
                 return {'Status' : 'User does not exist'}
             else:
-                with open('users.json', 'r') as f:
+                with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
                     users = json.load(f)
                 for user in users:
                     if users[user]['username'] == userL['username'] and users[user]['password'] == userL['password']:
@@ -101,10 +101,10 @@ def measureLP():
         if (request.json != {}):
             users = {}
             userL = request.json
-            if os.stat("/mnt/c/Users/nvg-1/shopsi/backend/users.json").st_size == 0:
+            if os.stat("/mnt/c/Users/nvg-1/shopsi/backend//home/anastatiaD/shopsi/backend/users.json").st_size == 0:
                 return {'Status' : 'User does not exist'}
             else:
-                with open('users.json', 'r') as f:
+                with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
                     users = json.load(f)
                 if 'user' in session:
                     userU = session['user']
@@ -132,10 +132,10 @@ def loginEXT():
     if request.method == 'POST':
         username = request.form.get("username")
         password = request.form.get("password")
-        if (os.stat("../shopsi/backend/users.json").st_size == 0):
+        if (os.stat("../shopsi/backend//home/anastatiaD/shopsi/backend/users.json").st_size == 0):
             return render_template("signup.html")
         else:
-            with open('users.json', 'r') as f:
+            with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
                 users = json.load(f)
             for user in users.keys():
                 if(users[user]["username"] == username and users[user]["password"] == password):
@@ -150,17 +150,17 @@ def signupEXT():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        if (os.stat("../shopsi/backend/users.json").st_size == 0):
+        if (os.stat("../shopsi/backend//home/anastatiaD/shopsi/backend/users.json").st_size == 0):
             users[0]['username'] = username
             users[0]['password'] = password
             users[0]['measurements'] = {}
-            with open('users.json', 'w') as f:
+            with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
                 json.dump(users, f)
             session['user'] = username + " " + password
             return render_template('index.html')
 
         else:
-            with open('users.json', 'r') as f:
+            with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
                 users = json.load(f)
             for user in users.keys():
                 if (users[user]["username"] == username and users[user]["password"] == password):
@@ -169,7 +169,7 @@ def signupEXT():
             users[num]['username'] = username
             users[num]['password'] = password
             users[num]['measurements'] = {}
-            with open('users.json', 'w') as f:
+            with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
                 json.dump(users, f)
             session['user'] = username + " " + password
             return render_template('index.html')
@@ -185,7 +185,7 @@ def measureEXT():
         armlen = request.form.get('armLength')
         neck = request.form.get('neckline')
         hip = request.form.get('lowHip')
-        with open('users.json', 'r') as f:
+        with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
             users = json.load(f)
         if 'user' in session:
             list = session['user'].split(" ")
