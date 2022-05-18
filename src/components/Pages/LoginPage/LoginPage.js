@@ -22,6 +22,20 @@ export class LoginPage extends Component {
     });
   };
 
+  getMeasure = (event) => {
+    axios.get('https://anastatiad.pythonanywhere.com/measureLP', {
+      'username' : this.state.username,
+      'password' : this.state.password
+    })
+    .then((response) => {
+      var res = response.data;
+      this.state.measurements = res;
+      console.log(res);
+    }, (error) => {
+      console.log(error);
+    })
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     axios
@@ -74,6 +88,7 @@ export class LoginPage extends Component {
                     </div>
                   </div>
               </div>
+              <button onClick={this.getMeasure}>Get Current Measurements</button>
               <button type="submit"
                 onClick={this.handleSubmit}
                 onSubmit={async (event) => {
