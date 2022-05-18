@@ -102,33 +102,43 @@ def loginLP():
 @api.route('/measureLP', methods=['POST', 'GET'])
 @cross_origin(allow_headers='*', supports_credentials=True, always_send=True, automatic_options=True)
 def measureLP():
+    print(request.method)
     if request.method == 'POST':
         if (request.json != {}):
             users = {}
             userL = request.json
-            if os.stat("/home/anastatiaD/shopsi/backend/users.json").st_size == 0:
-                return {'Status' : 'User does not exist'}
-            else:
+            if 'get' in userL.keys():
+                print("req", request.json)
+                users = {}
                 with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
                     users = json.load(f)
                 for user in users:
-                    if users[user]['logged'] == 'true':
-                        updateMeas('Waist', user, userL['Waist'])
-                        updateMeas('Bust/Chest', user, userL['Bust/Chest'])
-                        updateMeas('Inseam', user, userL['Inside Leg'])
-                        updateMeas('Arm Length', user, userL['Arm Length'])
-                        updateMeas('Neckline', user, userL['Neckline'])
-                        updateMeas('Low Hip', user, userL['Low Hip'])
-                        return {'Status' : 'Updated Measurements'}
+                    if users[user]['username'] == userL['username'] and users[user]['password'] == userL['password']:
+                        return users[user]['measurements']
                 return {'Status' : 'User does not exist'}
-            return {'Status' : 'No user logged in'}
+            else:
+                if os.stat("/home/anastatiaD/shopsi/backend/users.json").st_size == 0:
+                    return {'Status' : 'User does not exist'}
+                else:
+                    with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
+                        users = json.load(f)
+                    for user in users:
+                        if users[user]['logged'] == 'true':
+                            updateMeas('Waist', user, userL['Waist'])
+                            updateMeas('Bust/Chest', user, userL['Bust/Chest'])
+                            updateMeas('Inseam', user, userL['Inside Leg'])
+                            updateMeas('Arm Length', user, userL['Arm Length'])
+                            updateMeas('Neckline', user, userL['Neckline'])
+                            updateMeas('Low Hip', user, userL['Low Hip'])
+                            return {'Status' : 'Updated Measurements'}
+                    return {'Status' : 'User does not exist'}
     elif request.method == 'GET':
-        userL = request.json
+        print("req", request.args.get('param1'))
         users = {}
         with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
             users = json.load(f)
         for user in users:
-            if users[user]['username'] == userL['username'] and users[user]['password'] == userL['password']:
+            if users[user]['username'] == request.args.get('param1') and users[user]['password'] == request.args.get('param2'):
                 return users[user]['measurements']
         return {'Status' : 'User does not exist'}
     else:
