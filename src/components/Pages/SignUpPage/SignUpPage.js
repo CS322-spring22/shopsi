@@ -8,7 +8,14 @@ function SignUpPage() {
   const [status, setStatus] = useState("Existing User");
   const [username, setUser] = useState("");
   const [password, setPass] = useState("");
-  const [measurements, setMeasure] = useState({});
+  const [measurements, setMeasure] = useState({
+    'Waist' : 0,
+    'Bust/Chest' : 0,
+    'Inseam' : 0,
+    'Arm Length' : 0,
+    'Neckline' : 0,
+    'Low Hip' : 0
+  });
   const [navigate, setNav] = useState("/measurements");
   let nav = useNavigate();
 
@@ -18,17 +25,25 @@ function SignUpPage() {
     } else if (event.target.name === "password") {
       setPass(event.target.value);
     } else {
-      setMeasure({});
+      setMeasure({
+        'Waist' : 0,
+        'Bust/Chest' : 0,
+        'Inseam' : 0,
+        'Arm Length' : 0,
+        'Neckline' : 0,
+        'Low Hip' : 0
+      });
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post(`/signupLP`, {
+      .post(`https://anastatiad.pythonanywhere.com/signupLP`, {
         'username': username,
         'password': password,
         'measurements': measurements,
+        'logged' : ''
       })
       .then(
         (response) => {
@@ -79,14 +94,14 @@ function SignUpPage() {
             <div className="box">
               <label className="infoName">Username</label>
               <div className="infoBox">
-                <input type="text" id="usernameText" name='username' onChange={handleInput()}/>
+                <input type="text" id="usernameText" name='username' onChange={handleInput}/>
               </div>
             </div>
 
             <div className="box">
               <label className="infoName">Password</label>
               <div className="infoBox">
-                <input type="password" id="passwordText" name='password' onChange={handleInput()}/>
+                <input type="password" id="passwordText" name='password' onChange={handleInput}/>
               </div>
             </div>
           </div>

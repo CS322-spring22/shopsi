@@ -25,10 +25,11 @@ export class LoginPage extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post(`/loginLP`, {
+      .post(`https://anastatiad.pythonanywhere.com/loginLP`, {
         username: this.state.username,
         password: this.state.password,
         measurements: this.state.measurements,
+        logged : ''
       })
       .then(
         (response) => {
