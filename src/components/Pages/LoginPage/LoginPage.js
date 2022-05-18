@@ -23,6 +23,7 @@ export class LoginPage extends Component {
   };
 
   getMeasure = (event) => {
+    event.preventDefault();
     axios.get('https://anastatiad.pythonanywhere.com/measureLP', {
       'username' : this.state.username,
       'password' : this.state.password
