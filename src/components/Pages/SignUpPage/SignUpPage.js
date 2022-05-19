@@ -8,6 +8,7 @@ function SignUpPage() {
   const [status, setStatus] = useState("Existing User");
   const [username, setUser] = useState("");
   const [password, setPass] = useState("");
+  const [gender, setGender] = useState("");
   const [measurements, setMeasure] = useState({});
   const [navigate, setNav] = useState("/measurements");
   let nav = useNavigate();
@@ -17,7 +18,9 @@ function SignUpPage() {
       setUser(event.target.value);
     } else if (event.target.name === "password") {
       setPass(event.target.value);
-    } else {
+    } else if (event.target.name === "gender") {
+      setGender(event.target.value);
+    }else {
       setMeasure({});
     }
   };
@@ -28,6 +31,7 @@ function SignUpPage() {
       .post(`/signupLP`, {
         username: username,
         password: password,
+        gender: gender,
         measurements: measurements,
       })
       .then(
@@ -61,32 +65,45 @@ function SignUpPage() {
       <div className="signup">
         <form>
           <h2>Sign Up</h2>
+
           <div className="user-info">
+            <div className="box">
+              <label className="infoName">Gender</label>
+              <div className="infoBox">
+                <select>
+                  <option disabled selected hidden>Select Gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Non-binary</option>
+                </select>
+              </div>
+            </div>
+
             <div className="box">
               <label className="infoName">First Name</label>
               <div className="infoBox">
-                <input type="text" id="firstNameText" required/>
+                <input type="text" id="firstNameText" required />
               </div>
             </div>
 
             <div className="box">
               <label className="infoName">Last Name</label>
               <div className="infoBox">
-                <input type="text" id="lastNameText" required/>
+                <input type="text" id="lastNameText" required />
               </div>
             </div>
 
             <div className="box">
               <label className="infoName">Username</label>
               <div className="infoBox">
-                <input type="text" id="usernameText" required/>
+                <input type="text" id="usernameText" required />
               </div>
             </div>
 
             <div className="box">
               <label className="infoName">Password</label>
               <div className="infoBox">
-                <input type="password" id="passwordText" required/>
+                <input type="password" id="passwordText" required />
               </div>
             </div>
           </div>

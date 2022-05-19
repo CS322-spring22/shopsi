@@ -133,30 +133,30 @@ export class MeasurementPage extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // axios
-    //   .post(`/measureLP`, {
-    //     Waist: this.state.waist,
-    //     "Bust/Chest": this.state.bust,
-    //     "Inside Leg": this.state.inseam,
-    //     "Arm Length": this.state.armLen,
-    //     Neckline: this.state.neck,
-    //     "Low Hip": this.state.lowHip,
-    //   })
-    //   .then(
-    //     (response) => {
-    //       var result = response.data;
-    //       this.state.status = result.status;
-    //       console.log(result);
-    //       if (this.state.status === "Logout") {
-    //         this.state.navigate = "/";
-    //       } else {
-    //         this.state.navigate = "/measurements";
-    //       }
-    //     },
-    //     (error) => {
-    //       console.log(error);
-    //     }
-    //   );
+    axios
+      .post(`/measureLP`, {
+        Waist: this.state.waist,
+        "Bust/Chest": this.state.bust,
+        "Inside Leg": this.state.inseam,
+        "Arm Length": this.state.armLen,
+        Neckline: this.state.neck,
+        "Low Hip": this.state.lowHip,
+      })
+      .then(
+        (response) => {
+          var result = response.data;
+          this.state.status = result.status;
+          console.log(result);
+          if (this.state.status === "Logout") {
+            this.state.navigate = "/";
+          } else {
+            this.state.navigate = "/measurements";
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     this.setState({ isSubmitted: true });
     this.getTopSizeRecommend();
     this.getBottomSizeRecommend();
@@ -177,7 +177,7 @@ export class MeasurementPage extends Component {
         <div class="measurement">
           <form>
             <h2>Enter your measurements(cm)</h2>
-            {/* <br />
+            <br />
             <div className="switch">
               <div className="incm-switch">
                 IN
@@ -188,7 +188,7 @@ export class MeasurementPage extends Component {
                 M
                 <Switch />F
               </div>
-            </div> */}
+            </div>
             {/* Only appears before submit */}
             {!this.state.isSubmitted && (
               <div class="measurements">
