@@ -55,27 +55,35 @@ def signupLP():
         if (request.json != {}):
             users = {}
             userL = request.json
-            if os.stat("/home/anastatiaD/shopsi/backend/users.json").st_size == 0:
-                users[0] = request.json
-                users[0]['logged'] = userL['username']
-                session['user'] = userL
-                with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
-                    json.dump(users, f)
-                return {'Status' : 'Successful Signup!'}
+            if userL['username'] == '' or userL['password'] == '':
+                return {'Status' : 'need to enter more'}
             else:
-                with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
-                    users = json.load(f)
-                if userL in users.values():
-                    return {'Status' : 'Existing User'}
-                else:
-                    num = users.__len__()
-                    users[num] = userL
-                    users[num]['logged'] = userL['username']
+                if os.stat("/home/anastatiaD/shopsi/backend/users.json").st_size == 0:
+                    users[0] = request.json
+                    users[0]['logged'] = userL['username']
+                    session['user'] = userL
                     with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
                         json.dump(users, f)
-                    session['user'] = userL
                     return {'Status' : 'Successful Signup!'}
-    return {'Maybe this works too?': 'meh'}
+                else:
+                    with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
+                        users = json.load(f)
+                    contains = False
+                    for user in users:
+                        if users[user]['password'] == userL['password'] or users[user]['username'] == userL['username']:
+                            contains = True
+                    if contains:
+                        return {'Status' : 'User already exists'}
+                    else:
+                        num = users.__len__()
+                        users[num] = userL
+                        users[num]['logged'] = userL['username']
+                        with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
+                            json.dump(users, f)
+                        session['user'] = userL
+                        return {'Status' : 'Successful Signup!'}
+    else:
+        return {'Maybe this works too?': 'meh'}
 
 @api.route('/loginLP', methods=['POST', 'GET'])
 @cross_origin(allow_headers='*', supports_credentials=True, always_send=True, automatic_options=True)
