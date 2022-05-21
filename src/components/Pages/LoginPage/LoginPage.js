@@ -8,11 +8,9 @@ export class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: "",
       username: "",
       password: "",
-      measurements: {},
-      navigate: "",
+      navigate: "/measurements",
     };
   }
 
@@ -25,10 +23,9 @@ export class LoginPage extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post(`/loginLP`, {
+      .post(`https://anastatiad.pythonanywhere.com/loginLP`, {
         username: this.state.username,
-        password: this.state.password,
-        measurements: this.state.measurements,
+        password: this.state.password
       })
       .then(
         (response) => {
@@ -63,14 +60,14 @@ export class LoginPage extends Component {
               <div className="box">
                 <label className="infoName">Username</label>
                 <div className="infoBox">
-                  <input type="text" id="usernameText" required />
+                  <input type="text" id="usernameText" name='username' value={this.state.username} onChange={this.handleInput} required />
                 </div>
               </div>
 
               <div className="box">
                 <label className="infoName">Password</label>
                 <div className="infoBox">
-                  <input type="password" id="passwordText" required />
+                  <input type="password" id="passwordText" name='password' value={this.state.password} onChange={this.handleInput} required />
                 </div>
               </div>
             </div>

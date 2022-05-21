@@ -9,7 +9,14 @@ function SignUpPage() {
   const [username, setUser] = useState("");
   const [password, setPass] = useState("");
   const [gender, setGender] = useState("");
-  const [measurements, setMeasure] = useState({});
+  const [measurements, setMeasure] = useState({
+    'Waist' : 0,
+    'Bust/Chest' : 0,
+    'Inseam' : 0,
+    'Arm Length' : 0,
+    'Neckline' : 0,
+    'Low Hip' : 0
+  });
   const [navigate, setNav] = useState("/measurements");
   let nav = useNavigate();
 
@@ -21,14 +28,21 @@ function SignUpPage() {
     } else if (event.target.name === "gender") {
       setGender(event.target.value);
     }else {
-      setMeasure({});
+      setMeasure({
+        'Waist' : 0,
+        'Bust/Chest' : 0,
+        'Inseam' : 0,
+        'Arm Length' : 0,
+        'Neckline' : 0,
+        'Low Hip' : 0
+      });
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post(`/signupLP`, {
+      .post(`https://anastatiad.pythonanywhere.com/signupLP`, {
         username: username,
         password: password,
         gender: gender,
@@ -70,11 +84,11 @@ function SignUpPage() {
             <div className="box">
               <label className="infoName">Gender</label>
               <div className="infoBox">
-                <select>
+                <select name='gender' value={gender} onChange={handleInput}>
                   <option disabled selected hidden>Select Gender</option>
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Non-binary</option>
+                  <option value='male'>Male</option>
+                  <option value='female'>Female</option>
+                  <option value='nonbinary'>Non-binary</option>
                 </select>
               </div>
             </div>
@@ -96,14 +110,14 @@ function SignUpPage() {
             <div className="box">
               <label className="infoName">Username</label>
               <div className="infoBox">
-                <input type="text" id="usernameText" required />
+                <input type="text" id="usernameText" name='username' onChange={handleInput} required />
               </div>
             </div>
 
             <div className="box">
               <label className="infoName">Password</label>
               <div className="infoBox">
-                <input type="password" id="passwordText" required />
+                <input type="password" id="passwordText" name='password' onChange={handleInput} required />
               </div>
             </div>
           </div>
