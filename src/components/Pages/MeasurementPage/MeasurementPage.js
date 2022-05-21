@@ -119,6 +119,7 @@ export class MeasurementPage extends Component {
       isSubmitted: false,
       topSize: "",
       bottomSize: "",
+      unit: "", 
     };
   }
   handleInput = (event) => {
@@ -137,6 +138,7 @@ export class MeasurementPage extends Component {
         "Arm Length": this.state.armLen,
         "Neckline": this.state.neck,
         "Low Hip": this.state.lowHip,
+        "unit": this.state.unit
       })
       .then(
         (response) => {

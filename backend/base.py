@@ -14,6 +14,16 @@ SESSION_TYPE = 'redis'
 CORS(api, headers=['Content-Type'])
 Session(api)
 
+def convertUnit(dicts, user):
+    users = {}
+    with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
+        users = json.load(f)
+    for measure in dicts:
+        dicts[measure] = dicts[measure]*2.54
+    users[user]['measurements'] = dicts
+    with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
+        json.dump(users, f)
+
 def updateMeas(measurement, user, number):
     users = {}
     with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
@@ -117,7 +127,6 @@ def measureLP():
             userL = request.json
             if 'get' in userL.keys():
                 print("req", request.json)
-                users = {}
                 with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
                     users = json.load(f)
                 for user in users:
@@ -138,7 +147,9 @@ def measureLP():
                         updateMeas('Arm Length', user, userL['Arm Length'])
                         updateMeas('Neckline', user, userL['Neckline'])
                         updateMeas('Low Hip', user, userL['Low Hip'])
-                        return {'Status' : 'Updated Measurements'}
+                        if userL['unit'] == 'in':
+                            convertUnit(users[user]['measurements'], user)
+                        return {'Status' : 'Updated Measurements', 'Gender' : users[user]['gender']}
                 return {'Status' : 'User does not exist'}
     else:
         return {'Maybe this works too?': 'meh'}
