@@ -7,7 +7,7 @@
 }
 
 .MeasurementPage {
-  margin-top: 8%;
+  margin-top: 7%;
   align-items: center;
 }
 
@@ -63,9 +63,12 @@ img.logo {
   justify-content: center;
 }
 
-.switch .mf-switch {
+.switch .incm-switch {
   padding-top: 1%;
   padding-right: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .measurements {

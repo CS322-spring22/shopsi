@@ -2,9 +2,9 @@ import React from "react";
 import "./Switch.css";
 import { useState } from "react";
 
-function Switch() {
-  const [isToggled, setIsToggled] = useState(false);
-  const onToggle = () => setIsToggled(!isToggled);
+const Switch = ({isToggled, onToggle }) => {
+  // const [isToggled, setIsToggled] = useState(false);
+  // const onToggle = () => setIsToggled(!isToggled);
   return (
     <>
       <label className="toggle-switch">
@@ -13,6 +13,6 @@ function Switch() {
       </label>
     </>
   );
-}
+};
 
 export default Switch;

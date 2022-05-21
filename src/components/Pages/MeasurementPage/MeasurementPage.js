@@ -8,6 +8,7 @@ import Logout from "../../Logout/Logout";
 import Switch from "../../Switch/Switch";
 
 export class MeasurementPage extends Component {
+  
   between(x, min, max) {
     return x >= min && x <= max;
   }
@@ -176,17 +177,15 @@ export class MeasurementPage extends Component {
         <br></br>
         <div class="measurement">
           <form>
-            <h2>Enter your measurements(cm)</h2>
+
+              <h2>Enter your measurements</h2>
+
             <br />
             <div className="switch">
               <div className="incm-switch">
-                IN
-                <Switch />
                 CM
-              </div>
-              <div className="mf-switch">
-                M
-                <Switch />F
+                <Switch value={{}}/>
+                IN
               </div>
             </div>
             {/* Only appears before submit */}
