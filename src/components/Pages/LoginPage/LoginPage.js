@@ -8,11 +8,9 @@ export class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: "",
       username: "",
       password: "",
-      measurements: {},
-      navigate: "",
+      navigate: "/measurements",
     };
   }
 
@@ -74,31 +72,32 @@ export class LoginPage extends Component {
         <h3 className="desc">Shop with your size</h3><br></br>
         <div className="login">
           <form>
-              <h2>Login</h2>
-              <div className="user-info">              
-                  <div className="box">
-                      <label className="infoName">Username</label>
-                      <div className="infoBox">
-                        <input type="text" id="usernameText" name='username' value={this.state.username} onChange={this.handleInput}/>
-                      </div>
-                  </div>
-
-                  <div className="box">
-                    <label className="infoName">Password</label>
-                    <div className="infoBox">
-                      <input type="text" id="passwordText" name='password' value={this.state.password} onChange={this.handleInput}/>
-                    </div>
-                  </div>
+            <h2>Login</h2>
+            <div className="user-info">
+              <div className="box">
+                <label className="infoName">Username</label>
+                <div className="infoBox">
+                  <input type="text" id="usernameText" name='username' value={this.state.username} onChange={this.handleInput} required />
+                </div>
               </div>
-              <button onClick={this.getMeasure}>Get Current Measurements</button>
-              <button type="submit"
-                onClick={this.handleSubmit}
-                onSubmit={async (event) => {
-                  useNavigate(this.state.navigate);
-                }}
-                id="enter-info" >
-                <Link to={'/measurements'}>Submit</Link>
-              </button>
+
+              <div className="box">
+                <label className="infoName">Password</label>
+                <div className="infoBox">
+                  <input type="password" id="passwordText" name='password' value={this.state.password} onChange={this.handleInput} required />
+                </div>
+              </div>
+            </div>
+            <button
+              type="submit"
+              onClick={this.handleSubmit}
+              onSubmit={async (event) => {
+                useNavigate(this.state.navigate);
+              }}
+              id="enter-info"
+            >
+              <Link to={this.state.navigate}>Login</Link>
+            </button>
           </form>
         </div>
       </div>
@@ -106,4 +105,4 @@ export class LoginPage extends Component {
   }
 }
 
-export default LoginPage
+export default LoginPage;

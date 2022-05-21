@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useState } from "react";
 import "./MeasurementPage.css";
 import axios from "axios";
 import logo from "./logo.png";
@@ -9,6 +8,7 @@ export class MeasurementPage extends Component {
   between(x, min, max) {
     return x >= min && x <= max;
   }
+  
   getTopSizeRecommend() {
     if (
       this.between(this.state.bust, 78, 86) ||
@@ -56,6 +56,7 @@ export class MeasurementPage extends Component {
       this.state.topSize = "not supported";
     }
   }
+  
   getBottomSizeRecommend() {
     if (
       this.between(this.state.waist, 66, 74) ||
@@ -103,6 +104,7 @@ export class MeasurementPage extends Component {
       this.state.bottomSize = "not supported";
     }
   }
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -316,4 +318,5 @@ export class MeasurementPage extends Component {
     );
   }
 }
+
 export default MeasurementPage;

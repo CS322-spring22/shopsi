@@ -8,6 +8,7 @@ function SignUpPage() {
   const [status, setStatus] = useState("Existing User");
   const [username, setUser] = useState("");
   const [password, setPass] = useState("");
+  const [gender, setGender] = useState("");
   const [measurements, setMeasure] = useState({
     'Waist' : 0,
     'Bust/Chest' : 0,
@@ -25,7 +26,9 @@ function SignUpPage() {
       setUser(event.target.value);
     } else if (event.target.name === "password") {
       setPass(event.target.value);
-    } else {
+    } else if (event.target.name === "gender") {
+      setGender(event.target.value);
+    }else {
       setMeasure({
         'Waist' : 0,
         'Bust/Chest' : 0,
@@ -44,7 +47,8 @@ function SignUpPage() {
         'username': username,
         'password': password,
         'measurements': measurements,
-        'logged' : log
+        'logged' : log,
+        'gender': gender
       })
       .then(
         (response) => {
@@ -79,32 +83,45 @@ function SignUpPage() {
       <div className="signup">
         <form>
           <h2>Sign Up</h2>
+
           <div className="user-info">
+            <div className="box">
+              <label className="infoName">Gender</label>
+              <div className="infoBox">
+                <select name='gender' value={gender} onChange={handleInput}>
+                  <option disabled selected hidden>Select Gender</option>
+                  <option value='male'>Male</option>
+                  <option value='female'>Female</option>
+                  <option value='nonbinary'>Non-binary</option>
+                </select>
+              </div>
+            </div>
+
             <div className="box">
               <label className="infoName">First Name</label>
               <div className="infoBox">
-                <input type="text" id="firstNameText" />
+                <input type="text" id="firstNameText" required />
               </div>
             </div>
 
             <div className="box">
               <label className="infoName">Last Name</label>
               <div className="infoBox">
-                <input type="text" id="lastNameText" />
+                <input type="text" id="lastNameText" required />
               </div>
             </div>
 
             <div className="box">
               <label className="infoName">Username</label>
               <div className="infoBox">
-                <input type="text" id="usernameText" name='username' onChange={handleInput}/>
+                <input type="text" id="usernameText" name='username' value={username} onChange={handleInput} required />
               </div>
             </div>
 
             <div className="box">
               <label className="infoName">Password</label>
               <div className="infoBox">
-                <input type="password" id="passwordText" name='password' onChange={handleInput}/>
+                <input type="password" id="passwordText" name='password' value={password} onChange={handleInput} required />
               </div>
             </div>
           </div>

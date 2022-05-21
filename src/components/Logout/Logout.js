@@ -22,4 +22,4 @@ function Logout() {
   </button>;
 }
 
-export default Logout
+export default Logout;
