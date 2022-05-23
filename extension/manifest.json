@@ -7,12 +7,7 @@
         "default_icon": "logo.png",
         "default_popup": "intro.html"
     },
-    "permissions": [],
-    "content_scripts" : [
-        {
-            "matches" : ["https://www2.hm.com/en_us/*", "https://us.shein.com/*"],
-            "css" : [],
-            "js" : ["scrape.js"]
-        }
+    "permissions": [
+        "tabs"
     ]
 }
