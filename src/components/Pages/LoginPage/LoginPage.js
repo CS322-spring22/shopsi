@@ -38,6 +38,7 @@ export class LoginPage extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    localStorage.setItem('curr', this.state.username);
     axios
       .post(`https://anastatiad.pythonanywhere.com/loginLP`, {
         username: this.state.username,

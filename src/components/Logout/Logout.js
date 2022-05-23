@@ -6,7 +6,8 @@ function Logout() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios.post('https://anastatiad.pythonanywhere.com/logoutLP', {
-      'Status' : 'logout'
+      'Status' : 'logout',
+      'curr': localStorage.getItem('curr')
     }).then(
       (response) => {
         var res = response.data

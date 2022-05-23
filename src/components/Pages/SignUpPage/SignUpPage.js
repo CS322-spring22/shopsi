@@ -42,6 +42,7 @@ function SignUpPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    localStorage.setItem('curr', username);
     axios
       .post(`https://anastatiad.pythonanywhere.com/signupLP`, {
         'username': username,

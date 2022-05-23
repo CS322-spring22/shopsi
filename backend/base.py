@@ -139,7 +139,7 @@ def measureLP():
                 with open('/home/anastatiaD/shopsi/backend/users.json', 'r') as f:
                     users = json.load(f)
                 for user in users:
-                    uzer = users[user]['username']
+                    uzer = userL['curr']
                     if users[user]['logged'] == uzer:
                         updateMeas('Waist', user, userL['Waist'])
                         updateMeas('Bust/Chest', user, userL['Bust/Chest'])

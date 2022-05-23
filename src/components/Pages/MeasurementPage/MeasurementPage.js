@@ -138,7 +138,8 @@ export class MeasurementPage extends Component {
         "Arm Length": this.state.armLen,
         "Neckline": this.state.neck,
         "Low Hip": this.state.lowHip,
-        "unit": this.state.unit
+        "unit": this.state.unit,
+        "curr": localStorage.getItem('curr')
       })
       .then(
         (response) => {
