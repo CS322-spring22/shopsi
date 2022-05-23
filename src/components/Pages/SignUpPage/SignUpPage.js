@@ -10,15 +10,15 @@ function SignUpPage() {
   const [password, setPass] = useState("");
   const [gender, setGender] = useState("");
   const [measurements, setMeasure] = useState({
-    'Waist' : 0,
-    'Bust/Chest' : 0,
-    'Inseam' : 0,
-    'Arm Length' : 0,
-    'Neckline' : 0,
-    'Low Hip' : 0
+    Waist: 0,
+    "Bust/Chest": 0,
+    Inseam: 0,
+    "Arm Length": 0,
+    Neckline: 0,
+    "Low Hip": 0,
   });
   const [navigate, setNav] = useState("/measurements");
-  const [log, setLog] = useState('');
+  const [log, setLog] = useState("");
   let nav = useNavigate();
 
   const handleInput = (event) => {
@@ -28,14 +28,14 @@ function SignUpPage() {
       setPass(event.target.value);
     } else if (event.target.name === "gender") {
       setGender(event.target.value);
-    }else {
+    } else {
       setMeasure({
-        'Waist' : 0,
-        'Bust/Chest' : 0,
-        'Inseam' : 0,
-        'Arm Length' : 0,
-        'Neckline' : 0,
-        'Low Hip' : 0
+        Waist: 0,
+        "Bust/Chest": 0,
+        Inseam: 0,
+        "Arm Length": 0,
+        Neckline: 0,
+        "Low Hip": 0,
       });
     }
   };
@@ -45,11 +45,11 @@ function SignUpPage() {
     localStorage.setItem('curr', username);
     axios
       .post(`https://anastatiad.pythonanywhere.com/signupLP`, {
-        'username': username,
-        'password': password,
-        'measurements': measurements,
-        'logged' : log,
-        'gender': gender
+        username: username,
+        password: password,
+        measurements: measurements,
+        logged: log,
+        gender: gender,
       })
       .then(
         (response) => {
@@ -58,10 +58,10 @@ function SignUpPage() {
           console.log(result);
           if (status === "Existing User") {
             setNav("/login");
-            setLog('false')
+            setLog("false");
           } else {
             setNav("/measurements");
-            setLog('true')
+            setLog("true");
           }
         },
         (error) => {
@@ -89,11 +89,13 @@ function SignUpPage() {
             <div className="box">
               <label className="infoName">Gender</label>
               <div className="infoBox">
-                <select name='gender' value={gender} onChange={handleInput}>
-                  <option disabled selected hidden>Select Gender</option>
-                  <option value='male'>Male</option>
-                  <option value='female'>Female</option>
-                  <option value='nonbinary'>Non-binary</option>
+                <select name="gender" value={gender} onChange={handleInput}>
+                  <option disabled selected hidden>
+                    Select Gender
+                  </option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="nonbinary">Non-binary</option>
                 </select>
               </div>
             </div>
@@ -115,14 +117,28 @@ function SignUpPage() {
             <div className="box">
               <label className="infoName">Username</label>
               <div className="infoBox">
-                <input type="text" id="usernameText" name='username' value={username} onChange={handleInput} required />
+                <input
+                  type="text"
+                  id="usernameText"
+                  name="username"
+                  value={username}
+                  onChange={handleInput}
+                  required
+                />
               </div>
             </div>
 
             <div className="box">
               <label className="infoName">Password</label>
               <div className="infoBox">
-                <input type="password" id="passwordText" name='password' value={password} onChange={handleInput} required />
+                <input
+                  type="password"
+                  id="passwordText"
+                  name="password"
+                  value={password}
+                  onChange={handleInput}
+                  required
+                />
               </div>
             </div>
           </div>
