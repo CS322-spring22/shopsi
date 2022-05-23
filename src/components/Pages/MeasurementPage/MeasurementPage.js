@@ -10,6 +10,229 @@ export class MeasurementPage extends Component {
    return x >= min && x <= max;
  }
  
+ getManTopSizeRecommend() {
+  if (
+    this.between(this.state.bust, 78, 86) ||
+    this.between(this.state.waist, 66, 74) ||
+    this.between(this.state.neck, 34, 35)
+  ) {
+    this.state.topSize = "XS";
+  } else if (
+    this.between(this.state.bust, 86, 94) ||
+    this.between(this.state.waist, 74, 82) ||
+    this.between(this.state.neck, 36, 37)
+  ) {
+    this.state.topSize = "S";
+  } else if (
+    this.between(this.state.bust, 94, 102) ||
+    this.between(this.state.waist, 82, 90) ||
+    this.between(this.state.neck, 38, 39)
+  ) {
+    this.state.topSize = "M";
+  } else if (
+    this.between(this.state.bust, 102, 110) ||
+    this.between(this.state.waist, 90, 98) ||
+    this.between(this.state.neck, 40, 41)
+  ) {
+    this.state.topSize = "L";
+  } else if (
+    this.between(this.state.bust, 110, 118) ||
+    this.between(this.state.waist, 98, 107) ||
+    this.between(this.state.neck, 42, 43)
+  ) {
+    this.state.topSize = "XXXL";
+  } else if (
+    this.between(this.state.bust, 118, 126) ||
+    this.between(this.state.waist, 107, 116) ||
+    this.between(this.state.neck, 44, 45)
+  ) {
+    this.state.topSize = "XXL";
+  } else if (
+    this.between(this.state.bust, 126, 134) ||
+    this.between(this.state.waist, 116, 125) ||
+    this.between(this.state.neck, 46, 47)
+  ) {
+    this.state.topSize = "XXXL";
+  } else {
+    this.state.topSize = "not supported";
+  }
+}
+
+getWomanTopSizeRecommend() {
+  if (
+    this.between(this.state.bust, 74, 78) ||
+    this.between(this.state.waist, 58, 62) ||
+    this.between(this.state.lowHip, 82, 86) ||
+    this.between(this.state.armLen, 58, 59)
+  ) {
+    this.state.topSize = "XXS";
+  } else if (
+    this.between(this.state.bust, 78, 82) ||
+    this.between(this.state.waist, 62, 66) ||
+    this.between(this.state.lowHip, 86, 90) ||
+    this.between(this.state.armLen, 59, 60)
+  ) {
+    this.state.topSize = "XS";
+  } else if (
+    this.between(this.state.bust, 82, 90) ||
+    this.between(this.state.waist, 66, 74) ||
+    this.between(this.state.lowHip, 90, 97) ||
+    this.between(this.state.armLen, 59, 60)
+  ) {
+    this.state.topSize = "S";
+  } else if (
+    this.between(this.state.bust, 90, 98) ||
+    this.between(this.state.waist, 74, 82) ||
+    this.between(this.state.lowHip, 97, 103) ||
+    this.between(this.state.armLen, 60, 60)
+  ) {
+    this.state.topSize = "M";
+  } else if (
+    this.between(this.state.bust, 98, 107) ||
+    this.between(this.state.waist, 82, 93) ||
+    this.between(this.state.lowHip, 103, 110) ||
+    this.between(this.state.armLen, 60, 61)
+  ) {
+    this.state.topSize = "L";
+  } else if (
+    this.between(this.state.bust, 107, 113) ||
+    this.between(this.state.waist, 93, 105) ||
+    this.between(this.state.lowHip, 110, 120) ||
+    this.between(this.state.armLen, 61, 61)
+  ) {
+    this.state.topSize = "XL";
+  } else if (
+    this.between(this.state.bust, 119, 131) ||
+    this.between(this.state.waist, 105, 117) ||
+    this.between(this.state.lowHip, 120, 131) ||
+    this.between(this.state.armLen, 61, 62)
+  ) {
+    this.state.topSize = "XXL";
+  } else if (
+    this.between(this.state.bust, 131, 143) ||
+    this.between(this.state.waist, 117, 131) ||
+    this.between(this.state.lowHip, 131, 143) ||
+    this.between(this.state.armLen, 62, 62)
+  ) {this.state.topSize = "3XL";
+  } else if(
+    this.between(this.state.bust, 143, 155) ||
+    this.between(this.state.waist, 131, 145) ||
+    this.between(this.state.lowHip, 143, 155) ||
+    this.between(this.state.armLen, 61, 62)
+  ) {this.state.topSize = "4XL";
+  } else {
+    this.state.topSize = "not supported";
+  }
+}
+
+getManBottomSizeRecommend() {
+  if (
+    this.between(this.state.waist, 66, 74) ||
+    this.between(this.state.lowHip, 85, 91) ||
+    this.between(this.state.inseam, 80, 81)
+  ) {
+    this.state.bottomSize = "XS";
+  } else if (
+    this.between(this.state.waist, 74, 82) ||
+    this.between(this.state.lowHip, 91, 97) ||
+    this.between(this.state.inseam, 81, 82)
+  ) {
+    this.state.bottomSize = "S";
+  } else if (
+    this.between(this.state.waist, 82, 90) ||
+    this.between(this.state.lowHip, 97, 103) ||
+    this.between(this.state.inseam, 82, 83)
+  ) {
+    this.state.bottomSize = "M";
+  } else if (
+    this.between(this.state.waist, 90, 98) ||
+    this.between(this.state.lowHip, 103, 109) ||
+    this.between(this.state.inseam, 83, 84)
+  ) {
+    this.state.bottomSize = "L";
+  } else if (
+    this.between(this.state.waist, 98, 107) ||
+    this.between(this.state.lowHip, 109, 115) ||
+    this.between(this.state.inseam, 84, 85)
+  ) {
+    this.state.bottomSize = "XL";
+  } else if (
+    this.between(this.state.waist, 107, 116) ||
+    this.between(this.state.lowHip, 115, 121) ||
+    this.between(this.state.inseam, 85, 86)
+  ) {
+    this.state.bottomSize = "XXL";
+  } else if (
+    this.between(this.state.waist, 116, 125) ||
+    this.between(this.state.lowHip, 121, 127) ||
+    this.between(this.state.inseam, 86, 87)
+  ) {
+    this.state.bottomSize = "3XL";
+  } else {
+    this.state.bottomSize = "not supported";
+  }
+}
+
+getWomanBottomSizeRecommend() {
+  if (
+    this.between(this.state.waist, 58, 62) ||
+    this.between(this.state.lowHip, 82, 86) ||
+    this.between(this.state.inseam, 78, 78)
+  ) {
+    this.state.bottomSize = "XXS";
+  } else if (
+    this.between(this.state.waist, 62, 66) ||
+    this.between(this.state.lowHip, 86, 90) ||
+    this.between(this.state.inseam, 78, 78)
+  ) {
+    this.state.bottomSize = "XS";
+  } else if (
+    this.between(this.state.waist, 66, 74) ||
+    this.between(this.state.lowHip, 90, 97) ||
+    this.between(this.state.inseam, 78, 78)
+  ) {
+    this.state.bottomSize = "S";
+  } else if (
+    this.between(this.state.waist, 74, 82) ||
+    this.between(this.state.lowHip, 97, 103) ||
+    this.between(this.state.inseam, 78, 78)
+  ) {
+    this.state.bottomSize = "M";
+  } else if (
+    this.between(this.state.waist, 82, 93) ||
+    this.between(this.state.lowHip, 103, 110) ||
+    this.between(this.state.inseam, 78, 78)
+  ) {
+    this.state.bottomSize = "L";
+  } else if (
+    this.between(this.state.waist, 93, 105) ||
+    this.between(this.state.lowHip, 110, 120) ||
+    this.between(this.state.inseam, 78, 78)
+  ) {
+    this.state.bottomSize = "XL";
+  } else if (
+    this.between(this.state.waist, 105, 117) ||
+    this.between(this.state.lowHip, 120, 131) ||
+    this.between(this.state.inseam, 78, 78)
+  ) {
+    this.state.bottomSize = "XXL";
+  } else if (
+    this.between(this.state.waist, 117, 131) ||
+    this.between(this.state.lowHip, 131, 143) ||
+    this.between(this.state.inseam, 78, 78)
+  ) {
+    this.state.bottomSize = "3XL";
+  } else if (
+    this.between(this.state.waist, 131, 145) ||
+    this.between(this.state.lowHip, 143, 155) ||
+    this.between(this.state.inseam, 78, 78)
+  ) {
+    this.state.bottomSize = "4XL";
+  } else {
+    this.state.bottomSize = "not supported";
+  }
+}
+
  getTopSizeRecommend() {
    if (
      this.between(this.state.bust, 78, 86) ||
@@ -40,7 +263,7 @@ export class MeasurementPage extends Component {
      this.between(this.state.waist, 98, 107) ||
      this.between(this.state.neck, 42, 43)
    ) {
-     this.state.topSize = "XXXL";
+     this.state.topSize = "XL";
    } else if (
      this.between(this.state.bust, 118, 126) ||
      this.between(this.state.waist, 107, 116) ||
@@ -52,7 +275,7 @@ export class MeasurementPage extends Component {
      this.between(this.state.waist, 116, 125) ||
      this.between(this.state.neck, 46, 47)
    ) {
-     this.state.topSize = "XXXL";
+     this.state.topSize = "3XL";
    } else {
      this.state.topSize = "not supported";
    }
