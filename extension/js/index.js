@@ -3,6 +3,7 @@ var getSizeForm = document.getElementById("sizeRecommend")
 var resultTop = document.getElementById("resultsTop")
 var resultBottom = document.getElementById("resultsBottom")
 var getMeasure = JSON.parse(localStorage.getItem('shopsiMeasure'))
+console.log(getMeasure)
 const bustSlider = document.getElementById("bustSlider");
 const bustValue = document.getElementById("bust-value");
 const neckSlider = document.getElementById("neckSlider");
@@ -18,8 +19,6 @@ const legValue = document.getElementById("leg-value");
 getMesForm.style.display = 'none';
 
 //get current Account data
-let getCurrentAcc = localStorage.getItem('currentAcc')
-console.log(getCurrentAcc)
 
 document.getElementById("enter-measurement").addEventListener("click", measurements);
 document.getElementById('log-out').addEventListener("click", logout);
@@ -102,43 +101,42 @@ function measurements() {
     getMesForm.style.display = 'none';
     getSizeForm.style.display = 'block';
     // resultTop.innerHTML = bustSlider.value + "<br>" + neckSlider.value + "<br>" + waistSlider.value + "<br>" + hipSlider.value + "<br>" + armSlider.value + "<br>" + legSlider.value
-    fetch("https://api.jsonbin.io/b/6281c7b438be29676106d06f/latest")
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (jsonResponse) {
-            jsonResponse[getCurrentAcc]['measurements'] = {
-                "Waist": waistSlider.value,
-                "Bust/Chest": bustSlider.value,
-                "Inseam": legSlider.value,
-                "Arm Length": armSlider.value,
-                "Neckline": neckSlider.value,
-                "Low Hip": hipSlider.value
-            }
-            // console.log(JSON.stringify(jsonResponse));
-            const requestOptions = {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(jsonResponse)
-            };
-            fetch('https://api.jsonbin.io/b/6281c7b438be29676106d06f', requestOptions)
-                .then(response => {return response.json()})
-                .then(data => {
-                    localStorage.setItem('shopsiMeasure', JSON.stringify({
-                        "Waist": waistSlider.value,
-                        "Bust/Chest": bustSlider.value,
-                        "Inseam": legSlider.value,
-                        "Arm Length": armSlider.value,
-                        "Neckline": neckSlider.value,
-                        "Low Hip": hipSlider.value
-                    }))
-                    console.log(data)
-                    location.reload();
-                })
-        });
+    // fetch("https://api.jsonbin.io/b/6281c7b438be29676106d06f/latest")
+    //     .then(function (response) {
+    //         return response.json();
+    //     })
+    //     .then(function (jsonResponse) {
+    //         jsonResponse[getCurrentAcc]['measurements'] = {
+    //             "Waist": waistSlider.value,
+    //             "Bust/Chest": bustSlider.value,
+    //             "Inseam": legSlider.value,
+    //             "Arm Length": armSlider.value,
+    //             "Neckline": neckSlider.value,
+    //             "Low Hip": hipSlider.value
+    //         }
+    //         // console.log(JSON.stringify(jsonResponse));
+    //         const requestOptions = {
+    //             method: 'PUT',
+    //             headers: { 'Content-Type': 'application/json' },
+    //             body: JSON.stringify(jsonResponse)
+    //         };
+    //         fetch('https://api.jsonbin.io/b/6281c7b438be29676106d06f', requestOptions)
+    //             .then(response => {return response.json()})
+    //             .then(data => {
+    //                 localStorage.setItem('shopsiMeasure', JSON.stringify({
+    //                     "Waist": waistSlider.value,
+    //                     "Bust/Chest": bustSlider.value,
+    //                     "Inseam": legSlider.value,
+    //                     "Arm Length": armSlider.value,
+    //                     "Neckline": neckSlider.value,
+    //                     "Low Hip": hipSlider.value
+    //                 }))
+    //                 console.log(data)
+    //                 location.reload();
+    //             })
+    //     });
 }
 //get values object
-console.log(getMeasure.bust);
 
 //Set measurements value
 bustSlider.value = getMeasure['Bust/Chest']
@@ -163,6 +161,16 @@ function reEnter() {
 }
 function logout() {
     localStorage.setItem('isShopsiLoggedIn', false)
+    axios.post('https://anastatiad.pythonanywhere.com/logoutLP', {
+      'Status' : 'logout'
+    }).then(
+      (response) => {
+        var res = response.data
+        console.log(res)
+        localStorage.setItem("isLoggedOut", true)
+      }, (error) => {
+        console.log(error)
+      })
     window.location.href = "popup.html";
 }
 function edit() {
