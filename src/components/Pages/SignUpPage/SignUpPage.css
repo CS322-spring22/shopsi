@@ -59,6 +59,7 @@ img.logo {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  margin-left: 2%
 }
 
 .box .infoBox {
