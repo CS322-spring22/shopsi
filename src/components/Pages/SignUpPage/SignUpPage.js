@@ -5,6 +5,13 @@ import axios from "axios";
 import logo from "./logo.png";
 
 function SignUpPage() {
+  const [isValid, setIsValid] = useState(false);
+  const checkValid = () => {
+    if (username != "" && password != "") {
+      setIsValid(true);
+    }
+  };
+
   const [status, setStatus] = useState("Existing User");
   const [username, setUser] = useState("");
   const [password, setPass] = useState("");
@@ -17,7 +24,7 @@ function SignUpPage() {
     Neckline: 0,
     "Low Hip": 0,
   });
-  const [navigate, setNav] = useState("/measurements");
+  const [navigate, setNav] = useState("/sign-up");
   const [log, setLog] = useState("");
   let nav = useNavigate();
 
@@ -38,6 +45,9 @@ function SignUpPage() {
         "Low Hip": 0,
       });
     }
+    checkValid();
+    console.log("is valid:" + isValid);
+    console.log(username);
   };
 
   const handleSubmit = (event) => {
@@ -69,6 +79,11 @@ function SignUpPage() {
       );
     if (status === "Existing User") {
       setNav("/login");
+    }
+
+    if(!isValid) {
+      alert("Please enter username and password");
+      setNav("/sign-up");
     }
   };
 
@@ -141,16 +156,16 @@ function SignUpPage() {
               </div>
             </div>
           </div>
-          <button
-            type="submit"
-            onClick={handleSubmit}
-            id="enter-info"
-            onSubmit={async (event) => {
-              nav(this.state.navigate);
-            }}
-          >
-            <Link to={navigate}>Continue</Link>
-          </button>
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              id="enter-info"
+              onSubmit={async (event) => {
+                nav(navigate);
+              }}
+            >
+              <Link to={navigate}>Continue</Link>
+            </button>
         </form>
       </div>
     </div>
