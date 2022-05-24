@@ -10,12 +10,12 @@ function SignUpPage() {
   const [password, setPass] = useState("");
   const [gender, setGender] = useState("");
   const [measurements, setMeasure] = useState({
-    Waist: 0,
-    "Bust/Chest": 0,
-    Inseam: 0,
-    "Arm Length": 0,
-    Neckline: 0,
-    "Low Hip": 0,
+    "Waist": 74,
+    "Bust/Chest": 34,
+    "Inseam": 58,
+    "Arm Length": 82,
+    "Neckline": 61,
+    "Low Hip": 78,
   });
   const [navigate, setNav] = useState("/measurements");
   const [log, setLog] = useState("");
@@ -30,12 +30,12 @@ function SignUpPage() {
       setGender(event.target.value);
     } else {
       setMeasure({
-        Waist: 0,
-        "Bust/Chest": 0,
-        Inseam: 0,
-        "Arm Length": 0,
-        Neckline: 0,
-        "Low Hip": 0,
+        "Waist": 74,
+        "Bust/Chest": 34,
+        "Inseam": 58,
+        "Arm Length": 82,
+        "Neckline": 61,
+        "Low Hip": 78,
       });
     }
   };
@@ -43,6 +43,7 @@ function SignUpPage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     localStorage.setItem('curr', username);
+    localStorage.setItem('gender', gender);
     axios
       .post(`https://anastatiad.pythonanywhere.com/signupLP`, {
         username: username,
@@ -62,6 +63,7 @@ function SignUpPage() {
           } else {
             setNav("/measurements");
             setLog("true");
+            localStorage.setItem('measurements', JSON.stringify(result.Measurements))
           }
         },
         (error) => {

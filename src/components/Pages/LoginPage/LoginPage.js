@@ -10,7 +10,7 @@ export class LoginPage extends Component {
     this.state = {
       username: "",
       password: "",
-      navigate: "/measurements",
+      navigate: "/measurements"
     };
   }
 
@@ -49,12 +49,14 @@ export class LoginPage extends Component {
       .then(
         (response) => {
           var result = response.data;
+          localStorage.setItem('gender', result.Gender);
           this.state.status = result.status;
           console.log(result);
           if (this.state.status === "User does not exist") {
             this.state.navigate = "/sign-up";
           } else {
             this.state.navigate = "/measurements";
+            localStorage.setItem('measurements', JSON.stringify(result.Measurements))
           }
         },
         (error) => {

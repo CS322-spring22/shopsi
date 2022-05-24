@@ -113,7 +113,7 @@ def loginLP():
                         with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
                             json.dump(users, f)
                         session['user'] = userL
-                        return {'Status' : 'Successful Login'}
+                        return {'Status' : 'Successful Login', 'Gender' : users[user]['gender'], 'Measurements' : users[user]['measurements']}
                 return {'Status' : 'User does not exist'}
     return {'Maybe this works too?': 'meh'}
 
@@ -141,15 +141,22 @@ def measureLP():
                 for user in users:
                     uzer = userL['curr']
                     if users[user]['logged'] == uzer:
-                        updateMeas('Waist', user, userL['Waist'])
-                        updateMeas('Bust/Chest', user, userL['Bust/Chest'])
-                        updateMeas('Inseam', user, userL['Inside Leg'])
-                        updateMeas('Arm Length', user, userL['Arm Length'])
-                        updateMeas('Neckline', user, userL['Neckline'])
-                        updateMeas('Low Hip', user, userL['Low Hip'])
-                        if userL['unit'] == 'in':
-                            convertUnit(users[user]['measurements'], user)
-                        return {'Status' : 'Updated Measurements', 'Gender' : users[user]['gender']}
+                        if userL['unit'] == 'cm':
+                            updateMeas('Waist', user, userL['Waist'])
+                            updateMeas('Bust/Chest', user, userL['Bust/Chest'])
+                            updateMeas('Inseam', user, userL['Inside Leg'])
+                            updateMeas('Arm Length', user, userL['Arm Length'])
+                            updateMeas('Neckline', user, userL['Neckline'])
+                            updateMeas('Low Hip', user, userL['Low Hip'])
+                            return {'Status' : 'Updated Measurements', 'Unit' : userL['unit']}
+                        else:
+                            updateMeas('Waist', user, int(int(userL['Waist'])*2.54))
+                            updateMeas('Bust/Chest', user, int(int(userL['Bust/Chest'])*2.54))
+                            updateMeas('Inseam', user, int(int(userL['Inside Leg'])*2.54))
+                            updateMeas('Arm Length', user, int(int(userL['Arm Length'])*2.54))
+                            updateMeas('Neckline', user, int(int(userL['Neckline'])*2.54))
+                            updateMeas('Low Hip', user, int(int(userL['Low Hip'])*2.54))
+                            return {'Status' : 'Updated Measurements', 'Unit' : userL['unit']}
                 return {'Status' : 'User does not exist'}
     else:
         return {'Maybe this works too?': 'meh'}
@@ -164,13 +171,13 @@ def logoutLP():
             users = json.load(f)
         if stat['Status'] == 'logout':
             for user in users:
-                uzer = users[user]['username']
+                uzer = stat['curr']
                 if users[user]['logged'] == uzer:
                     users[user]['logged'] = 'false'
                     with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
                         json.dump(users, f)
                     return {'Status' : 'Logged Out'}
-            return {'Status' : 'No users logged in'}
+            return {'Status' : 'User not logged in'}
         return {'Status' : 'no clue how this happened'}
     return {'Status' : 'request method isnt post'}
 #EXTENSION-EXTENSION-EXTENSION-EXTENSION-EXTENSION-EXTENSION-EXTENSION

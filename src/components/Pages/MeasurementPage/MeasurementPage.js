@@ -4,6 +4,7 @@ import "./MeasurementPage.css";
 import axios from "axios";
 import logo from "./logo.png";
 import Logout from "../../Logout/Logout";
+
 export class MeasurementPage extends Component {
   between(x, min, max) {
     return x >= min && x <= max;
@@ -332,13 +333,14 @@ export class MeasurementPage extends Component {
 
   constructor(props) {
     super(props);
+    var getMeasure = JSON.parse(localStorage.getItem('measurements'));
     this.state = {
-      bust: 74,
-      neck: 34,
-      waist: 58,
-      lowHip: 82,
-      armLen: 61,
-      inseam: 78,
+      bust: getMeasure['Bust/Chest'],
+      neck: getMeasure['Neckline'],
+      waist: getMeasure['Waist'],
+      lowHip: getMeasure['Low Hip'],
+      armLen: getMeasure['Arm Length'],
+      inseam: getMeasure['Inseam'],
       status: "",
       navigate: "",
       isSubmitted: false,
@@ -358,11 +360,11 @@ export class MeasurementPage extends Component {
     event.preventDefault();
     axios
       .post(`https://anastatiad.pythonanywhere.com/measureLP`, {
-        Waist: this.state.waist,
+        "Waist": this.state.waist,
         "Bust/Chest": this.state.bust,
         "Inside Leg": this.state.inseam,
         "Arm Length": this.state.armLen,
-        Neckline: this.state.neck,
+        "Neckline": this.state.neck,
         "Low Hip": this.state.lowHip,
         "unit": this.state.unit,
         "curr": localStorage.getItem('curr')
@@ -383,27 +385,36 @@ export class MeasurementPage extends Component {
         }
       );
     this.setState({ isSubmitted: true });
-    this.getTopSizeRecommend();
-    this.getBottomSizeRecommend();
+    if (localStorage.getItem('gender') === 'female'){
+      this.getWomanTopSizeRecommend();
+      this.getWomanBottomSizeRecommend();
+    }
+    else{
+      this.getManTopSizeRecommend();
+      this.getManBottomSizeRecommend();
+    }
   };
 
   handleToggle = (event) => {
+    var getMeasure = JSON.parse(localStorage.getItem('measurements'));
     if (!this.state.isInches) {
       this.setState({ isInches: true });
-      this.setState({ bust: 29})
-      this.setState({ neck: 13})
-      this.setState({ waist: 23})
-      this.setState({ lowHip: 32})
-      this.setState({ armLen: 24})
-      this.setState({ inseam: 31})
+      this.setState({ bust: Math.round(getMeasure['Bust/Chest']/2.54)})
+      this.setState({ neck: Math.round(getMeasure['Neckline']/2.54)})
+      this.setState({ waist: Math.round(getMeasure['Waist']/2.54)})
+      this.setState({ lowHip: Math.round(getMeasure['Low Hip']/2.54)})
+      this.setState({ armLen: Math.round(getMeasure['Arm Length']/2.54)})
+      this.setState({ inseam: Math.round(getMeasure['Inseam']/2.54)})
+      this.setState({ unit: 'in' })
     } else {
       this.setState({ isInches: false });
-      this.setState({ bust: 74})
-      this.setState({ neck: 34})
-      this.setState({ waist: 58})
-      this.setState({ lowHip: 82})
-      this.setState({ armLen: 61})
-      this.setState({ inseam: 78})
+      this.setState({ bust: getMeasure['Bust/Chest']})
+      this.setState({ neck: getMeasure['Neckline']})
+      this.setState({ waist: getMeasure['Waist']})
+      this.setState({ lowHip: getMeasure['Low Hip']})
+      this.setState({ armLen: getMeasure['Arm Length']})
+      this.setState({ inseam: getMeasure['Inseam']})
+      this.setState({ unit: 'cm' })
     }
     
     
