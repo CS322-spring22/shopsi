@@ -10,15 +10,17 @@ function SignUpPage() {
   const [password, setPass] = useState("");
   const [gender, setGender] = useState("");
   const [measurements, setMeasure] = useState({
-    "Waist": 74,
-    "Bust/Chest": 34,
-    "Inseam": 58,
-    "Arm Length": 82,
-    "Neckline": 61,
-    "Low Hip": 78,
+    "Waist": 58,
+    "Bust/Chest": 74,
+    "Inseam": 78,
+    "Arm Length": 61,
+    "Neckline": 34,
+    "Low Hip": 82,
   });
   const [navigate, setNav] = useState("/measurements");
   const [log, setLog] = useState("");
+  const [firstname, setFirst] = useState('');
+  const [lastname, setLast] = useState('');
   let nav = useNavigate();
 
   const handleInput = (event) => {
@@ -28,14 +30,18 @@ function SignUpPage() {
       setPass(event.target.value);
     } else if (event.target.name === "gender") {
       setGender(event.target.value);
-    } else {
+    } else if (event.target.name === 'firstname') {
+      setFirst(event.target.value);
+    } else if (event.target.name === 'lastname') {
+      setLast(event.target.value);
+    }else {
       setMeasure({
-        "Waist": 74,
-        "Bust/Chest": 34,
-        "Inseam": 58,
-        "Arm Length": 82,
-        "Neckline": 61,
-        "Low Hip": 78,
+        "Waist": 58,
+        "Bust/Chest": 74,
+        "Inseam": 78,
+        "Arm Length": 61,
+        "Neckline": 34,
+        "Low Hip": 82,
       });
     }
   };
@@ -44,11 +50,14 @@ function SignUpPage() {
     event.preventDefault();
     localStorage.setItem('curr', username);
     localStorage.setItem('gender', gender);
+    localStorage.setItem('measurements', JSON.stringify(measurements));
     axios
       .post(`https://anastatiad.pythonanywhere.com/signupLP`, {
         username: username,
         password: password,
         measurements: measurements,
+        firstname: firstname,
+        lastname : lastname,
         logged: log,
         gender: gender,
       })
@@ -63,7 +72,6 @@ function SignUpPage() {
           } else {
             setNav("/measurements");
             setLog("true");
-            localStorage.setItem('measurements', JSON.stringify(result.Measurements))
           }
         },
         (error) => {
@@ -92,7 +100,7 @@ function SignUpPage() {
               <label className="infoName">Gender</label>
               <div className="infoBox">
                 <select name="gender" value={gender} onChange={handleInput}>
-                  <option disabled selected hidden>
+                  <option>
                     Select Gender
                   </option>
                   <option value="male">Male</option>
@@ -105,14 +113,14 @@ function SignUpPage() {
             <div className="box">
               <label className="infoName">First Name</label>
               <div className="infoBox">
-                <input type="text" id="firstNameText" required />
+                <input type="text" id="firstNameText" name='firstname' value={firstname} onChange={handleInput} required />
               </div>
             </div>
 
             <div className="box">
               <label className="infoName">Last Name</label>
               <div className="infoBox">
-                <input type="text" id="lastNameText" required />
+                <input type="text" id="lastNameText" name='lastname' value={lastname} onChange={handleInput} required />
               </div>
             </div>
 
