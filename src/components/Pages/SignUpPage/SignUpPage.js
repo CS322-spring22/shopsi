@@ -81,7 +81,7 @@ function SignUpPage() {
       setNav("/login");
     }
 
-    if(!isValid) {
+    if (!isValid) {
       alert("Please enter username and password");
       setNav("/sign-up");
     }
@@ -89,84 +89,82 @@ function SignUpPage() {
 
   return (
     <div className="SignUpPage">
-      <a href="/" className="logo">
-        <img src={logo} alt="logo" />
-      </a>
-      <h1>Shop$i</h1>
-      <h3 className="desc">Shop with your size</h3>
-      <br></br>
+      <div className="signup-header">
+        <a href="/" className="logo">
+          <img src={logo} alt="logo" />
+        </a>
+        <h1>Shop$i</h1>
+        <h3 className="desc">Shop with your size</h3>
+        <h2>Sign Up</h2>
+      </div>
       <div className="signup">
-        <form>
-          <h2>Sign Up</h2>
-
-          <div className="user-info">
-            <div className="box">
-              <label className="infoName">Gender</label>
-              <div className="infoBox">
-                <select name="gender" value={gender} onChange={handleInput}>
-                  <option disabled selected hidden>
-                    Select Gender
-                  </option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="nonbinary">Non-binary</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="box">
-              <label className="infoName">First Name</label>
-              <div className="infoBox">
-                <input type="text" id="firstNameText" required />
-              </div>
-            </div>
-
-            <div className="box">
-              <label className="infoName">Last Name</label>
-              <div className="infoBox">
-                <input type="text" id="lastNameText" required />
-              </div>
-            </div>
-
-            <div className="box">
-              <label className="infoName">Username</label>
-              <div className="infoBox">
-                <input
-                  type="text"
-                  id="usernameText"
-                  name="username"
-                  value={username}
-                  onChange={handleInput}
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="box">
-              <label className="infoName">Password</label>
-              <div className="infoBox">
-                <input
-                  type="password"
-                  id="passwordText"
-                  name="password"
-                  value={password}
-                  onChange={handleInput}
-                  required
-                />
-              </div>
+        <div className="user-info">
+          <div className="box">
+            <div className="infoName">Gender</div>
+            <div className="infoBox">
+              <select name="gender" value={gender} onChange={handleInput}>
+                <option disabled selected hidden>
+                  Select Gender
+                </option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="nonbinary">Non-binary</option>
+              </select>
             </div>
           </div>
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              id="enter-info"
-              onSubmit={async (event) => {
-                nav(navigate);
-              }}
-            >
-              <Link to={navigate}>Continue</Link>
-            </button>
-        </form>
+
+          <div className="box">
+            <div className="infoName">First Name</div>
+            <div className="infoBox">
+              <input type="text" id="firstNameText" required />
+            </div>
+          </div>
+
+          <div className="box">
+            <div className="infoName">Last Name</div>
+            <div className="infoBox">
+              <input type="text" id="lastNameText" required />
+            </div>
+          </div>
+
+          <div className="box">
+            <div className="infoName">Username</div>
+            <div className="infoBox">
+              <input
+                type="text"
+                id="usernameText"
+                name="username"
+                value={username}
+                onChange={handleInput}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="box">
+            <div className="infoName">Password</div>
+            <div className="infoBox">
+              <input
+                type="password"
+                id="passwordText"
+                name="password"
+                value={password}
+                onChange={handleInput}
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          id="enter-info"
+          onSubmit={async (event) => {
+            nav(navigate);
+          }}
+        >
+          <Link to={navigate}>Continue</Link>
+        </button>
       </div>
     </div>
   );

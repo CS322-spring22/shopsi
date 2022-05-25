@@ -22,19 +22,23 @@ export class LoginPage extends Component {
 
   getMeasure = (event) => {
     event.preventDefault();
-    axios.post('https://anastatiad.pythonanywhere.com/measureLP', {
-      username : this.state.username,
-      password : this.state.password,
-      get : 'true'
-    })
-    .then((response) => {
-      var res = response.data;
-      this.state.measurements = res;
-      console.log(res);
-    }, (error) => {
-      console.log(error);
-    })
-  }
+    axios
+      .post("https://anastatiad.pythonanywhere.com/measureLP", {
+        username: this.state.username,
+        password: this.state.password,
+        get: "true",
+      })
+      .then(
+        (response) => {
+          var res = response.data;
+          this.state.measurements = res;
+          console.log(res);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -43,7 +47,7 @@ export class LoginPage extends Component {
         username: this.state.username,
         password: this.state.password,
         measurements: this.state.measurements,
-        logged : ''
+        logged: "",
       })
       .then(
         (response) => {
@@ -60,31 +64,45 @@ export class LoginPage extends Component {
           console.log(error);
         }
       );
-  }
+  };
 
   render() {
     return (
-      <div className='LoginPage'>
-        <a href="/" className="logo">
-          <img src={logo} alt="logo" />
-        </a>
-        <h1>Shop$i</h1>
-        <h3 className="desc">Shop with your size</h3><br></br>
-        <div className="login">
-          <form>
-            <h2>Login</h2>
+      <div className="LoginPage">
+        <div className="login-header">
+          <a href="/" className="logo">
+            <img src={logo} alt="logo" />
+          </a>
+          <h1>Shop$i</h1>
+          <h3 className="desc">Shop with your size</h3>
+          <h2>Login</h2>
+          <div className="login">
             <div className="user-info">
               <div className="box">
-                <label className="infoName">Username</label>
+                <div className="infoName">Username</div>
                 <div className="infoBox">
-                  <input type="text" id="usernameText" name='username' value={this.state.username} onChange={this.handleInput} required />
+                  <input
+                    type="text"
+                    id="usernameText"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.handleInput}
+                    required
+                  />
                 </div>
               </div>
 
               <div className="box">
-                <label className="infoName">Password</label>
+                <div className="infoName">Password</div>
                 <div className="infoBox">
-                  <input type="password" id="passwordText" name='password' value={this.state.password} onChange={this.handleInput} required />
+                  <input
+                    type="password"
+                    id="passwordText"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleInput}
+                    required
+                  />
                 </div>
               </div>
             </div>
@@ -98,10 +116,10 @@ export class LoginPage extends Component {
             >
               <Link to={this.state.navigate}>Login</Link>
             </button>
-          </form>
+          </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

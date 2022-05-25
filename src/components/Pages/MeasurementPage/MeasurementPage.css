@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Palette+Mosaic&display=swap");
  
-.box {
+.MeasurementPage .box {
  display: flex;
  align-items: center;
 }
@@ -78,7 +78,7 @@ img.logo {
  padding-right: 10%;
 }
  
-.box .sliderBar {
+.MeasurementPage .box .sliderBar {
  height: 40px;
  width: 500px;
  display: flex;
@@ -87,7 +87,7 @@ img.logo {
  position: relative;
 }
  
-.box .sliderBar input {
+.MeasurementPage .box .sliderBar input {
  height: 7px;
  width: 80%;
  -webkit-appearance: none;
@@ -96,7 +96,7 @@ img.logo {
  box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
 }
  
-.box .sliderBar .value {
+.MeasurementPage .box .sliderBar .value {
  position: relative;
  left: 10px;
  font-size: 16px;
@@ -106,7 +106,7 @@ img.logo {
  font-weight: 600;
 }
  
-.box .mesName {
+.MeasurementPage .box .mesName {
  position: relative;
  left: 35%;
  display: inline-block;
