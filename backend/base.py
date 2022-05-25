@@ -113,7 +113,7 @@ def loginLP():
                         with open('/home/anastatiaD/shopsi/backend/users.json', 'w') as f:
                             json.dump(users, f)
                         session['user'] = userL
-                        return {'Status' : 'Successful Login', 'Gender' : users[user]['gender'], 'Measurements' : users[user]['measurements']}
+                        return {'Status' : 'Successful Login', 'Gender' : users[user]['gender'], 'Measurements' : users[user]['measurements'], 'Firstname' : users[user]['firstname']}
                 return {'Status' : 'User does not exist'}
     return {'Maybe this works too?': 'meh'}
 
