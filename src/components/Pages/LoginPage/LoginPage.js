@@ -50,6 +50,7 @@ export class LoginPage extends Component {
         (response) => {
           var result = response.data;
           localStorage.setItem('gender', result.Gender);
+          localStorage.setItem('firstname', result.Firstname);
           this.state.status = result.status;
           console.log(result);
           if (this.state.status === "User does not exist") {
@@ -63,6 +64,7 @@ export class LoginPage extends Component {
           console.log(error);
         }
       );
+      window.location.reload(true);
   }
 
   render() {

@@ -31,6 +31,7 @@ function SignUpPage() {
     } else if (event.target.name === "gender") {
       setGender(event.target.value);
     } else if (event.target.name === 'firstname') {
+      localStorage.setItem('firstname', event.target.value);
       setFirst(event.target.value);
     } else if (event.target.name === 'lastname') {
       setLast(event.target.value);

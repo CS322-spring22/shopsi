@@ -12,9 +12,17 @@ const Navbar = () => {
   return (
     <div className="navheader">
       <nav className="navbar">
-        <a href="/" className="logo">
-          <img src={logo} alt="logo" />
-        </a>
+        {localStorage.getItem('firstname') === '' && (
+          <a href="/" className="logo">
+            <img src={logo} alt="logo" />
+          </a>
+        )}
+        {localStorage.getItem('firstname') != '' && (
+          <a href="/" className="logo">
+            <img src={logo} alt="logo" />
+            <p> Welcome Back {localStorage.getItem('firstname')}</p>
+          </a>
+        )}
         <ul className={"nav-menu"}>
           <li className="nav-item">
             <Link
@@ -54,17 +62,23 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <Redirect to="/sign-up" onClick={closeMenu}>
-              Get Started
+              Sign Up
             </Redirect>
           </li>
-          <li className="nav-item">
-            <Redirect to="/login" onClick={closeMenu}>
-              Login
-            </Redirect>
-          </li>
-          <li className="nav-item">
-            <Logout />
-          </li>
+          {/*if no user is logged in*/}
+          {localStorage.getItem('firstname') === '' && (
+            <li className="nav-item">
+              <Redirect to="/login" onClick={closeMenu}>
+                Login
+              </Redirect>
+            </li>
+          )}
+          {/*if user is logged in*/}
+          {localStorage.getItem('firstname') != '' && (
+            <li className="nav-item">
+              <Logout />
+            </li>
+          )}
         </ul>
       </nav>
     </div>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./MeasurementPage.css";
 import axios from "axios";
 import logo from "./logo.png";
@@ -580,8 +580,13 @@ export class MeasurementPage extends Component {
   render() {
     return (
       <div className="MeasurementPage">
+        <h1>Hello {localStorage.getItem('firstname')}</h1>
+        <h2>Let's enter your measurements!</h2>
         <div className="buttons">
           <Logout />
+          <button>
+            <Link to={'/'}>Go Back Home</Link>
+          </button>
         </div>
         <a href="/" className="logo">
           <img src={logo} alt="logo" />
