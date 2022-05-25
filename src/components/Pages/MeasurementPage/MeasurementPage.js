@@ -571,17 +571,19 @@ export class MeasurementPage extends Component {
       this.setState({ inseam: getMeasure['Inseam']})
       this.setState({ unit: 'cm' })
     }
-    
-    
-
-    
   };
 
   render() {
     return (
       <div className="MeasurementPage">
         <h1>Hello {localStorage.getItem('firstname')}</h1>
-        <h2>Let's enter your measurements!</h2>
+        {/*If not submitted */}
+        {!this.state.isSubmitted && (
+          <h2>Let's enter your measurements!</h2>
+        )}
+        {this.state.isSubmitted && (
+          <h2>Here are your recommended sizes!</h2>
+        )}
         <div className="buttons">
           <Logout />
           <button>

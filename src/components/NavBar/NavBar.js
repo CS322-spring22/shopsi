@@ -60,13 +60,24 @@ const Navbar = () => {
               Measuring
             </Link>
           </li>
-          <li className="nav-item">
-            <Redirect to="/sign-up" onClick={closeMenu}>
-              Sign Up
-            </Redirect>
-          </li>
           {/*if no user is logged in*/}
-          {localStorage.getItem('firstname') === '' && (
+          {localStorage.getItem('firstname') === null && (
+            <li className="nav-item">
+              <Redirect to="/sign-up" onClick={closeMenu}>
+                Sign Up
+              </Redirect>
+            </li>
+          )}
+          {/*if user is logged in*/}
+          {localStorage.getItem('firstname') != null && (
+            <li className="nav-item">
+              <Redirect to="/measurements" onClick={closeMenu}>
+                Update Measurements
+              </Redirect>
+            </li>
+          )}
+          {/*if no user is logged in*/}
+          {localStorage.getItem('firstname') === null && (
             <li className="nav-item">
               <Redirect to="/login" onClick={closeMenu}>
                 Login
@@ -74,7 +85,7 @@ const Navbar = () => {
             </li>
           )}
           {/*if user is logged in*/}
-          {localStorage.getItem('firstname') != '' && (
+          {localStorage.getItem('firstname') != null && (
             <li className="nav-item">
               <Logout />
             </li>
