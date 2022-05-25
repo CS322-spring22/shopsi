@@ -64,7 +64,6 @@ export class LoginPage extends Component {
           console.log(error);
         }
       );
-      window.location.reload(true);
   }
 
   render() {

@@ -12,12 +12,12 @@ const Navbar = () => {
   return (
     <div className="navheader">
       <nav className="navbar">
-        {localStorage.getItem('firstname') === '' && (
+        {localStorage.getItem('firstname') === null && (
           <a href="/" className="logo">
             <img src={logo} alt="logo" />
           </a>
         )}
-        {localStorage.getItem('firstname') != '' && (
+        {localStorage.getItem('firstname') != null && (
           <a href="/" className="logo">
             <img src={logo} alt="logo" />
             <p> Welcome Back {localStorage.getItem('firstname')}</p>
