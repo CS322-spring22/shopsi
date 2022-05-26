@@ -499,6 +499,7 @@ export class MeasurementPage extends Component {
       unit: "",
     };
   }
+  
   handleInput = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
