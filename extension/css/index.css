@@ -22,10 +22,15 @@ h1.header {
     text-align: center;
     font-family: 'Palette Mosaic';
 }
-h2 {
+h1#welcome {
     text-align: center;
     font-family: 'Montserrat';
     font-size: 22px;
+}
+h2 {
+    text-align: center;
+    font-family: 'Montserrat';
+    font-size: 20px;
 }
 h1.header.active {
     color: #2F1C53;
@@ -172,14 +177,14 @@ button#edit:hover {
 }
 div#resultsTop {
     margin-top: 50px;
-    font-size: 21px;
+    font-size: 18px;
     font-family: 'Montserrat';
     text-align: center;
 }
 div#resultsBottom {
     margin-top: 20px;
     text-align: center;
-    font-size: 21px;
+    font-size: 18px;
     font-family: 'Montserrat';
 }
 div#size {
@@ -188,4 +193,51 @@ div#size {
 }
 h2#sizeHeader {
     margin-top:20px;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%,-50%);
+    height: 180px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.container .toggle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 20px;
+    background: #444;
+    border-radius: 30px;
+    transition: 0.3; 
+}
+.container .toggle .toggle-button {
+    position: absolute;
+    top: 12.4%;
+    left: 3px;
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer; 
+    transition: 0.5;  
+}
+.container .unitText {
+    position:absolute;
+    left: -35px;
+    font-size: 16px;
+    font-family: 'Montserrat';
+}
+.container .toggle.active {
+    background: #c184ff;
+}
+.container .toggle.active .toggle-button {
+    left: 22px
+}
+.container .toggle.active .unitText {
+    left: 50px;
 }

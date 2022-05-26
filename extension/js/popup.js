@@ -42,36 +42,7 @@ function getInfo() {
     var usr = document.getElementById("username").value
     var pwd = document.getElementById("password").value
     if (usr && pwd) {
-        // fetch data from Anastatia endpoint
-        // axios.post('https://anastatiad.pythonanywhere.com/loginLP', {
-        //     username: usr,
-        //     password: pwd,
-        //     get: 'true'
-        // })
-        //     .then((response) => {
-        //         var res = response.data;
-        //         console.log(res);
-        //         if (res.Status == 'Successful Login') {
-        //             localStorage.setItem('isShopsiLoggedIn', true)
-        //             axios.post('https://anastatiad.pythonanywhere.com/measureLP', {
-        //                 username: usr,
-        //                 password: pwd,
-        //                 get: 'true'
-        //             })
-        //                 .then((response) => {
-        //                     var res = response.data;
-        //                     console.log(res);
-        //                     localStorage.setItem('shopsiMeasure', JSON.stringify(res))
-        //                 }, (error) => {
-        //                     console.log(error);
-        //                 })
-        //             getLogForm.style.display = 'none'
-        //             window.location.href = "index.html"
-        //         }
-        //     }, (error) => {
-        //         console.log(error);
-        //     })
-        
+        localStorage.setItem("curr",usr)
         const options = {
             method: "POST",
             headers: {
@@ -92,6 +63,8 @@ function getInfo() {
                 if (data.Status == 'Successful Login') {
                     console.log('success')
                     localStorage.setItem('isShopsiLoggedIn', true)
+                    localStorage.setItem('gender', data.Gender)
+                    localStorage.setItem('firstname', data.Firstname);
                     fetch("https://anastatiad.pythonanywhere.com/measureLP", options)
                         .then((response) => response.json())
                         .then((data) => {
