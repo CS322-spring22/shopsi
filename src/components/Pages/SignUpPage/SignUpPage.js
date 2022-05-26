@@ -9,6 +9,10 @@ function SignUpPage() {
   const checkValid = () => {
     if (username != "" && password != "") {
       setIsValid(true);
+      setNav("/");
+    } else {
+      setIsValid(false);
+      setNav("/sign-up");
     }
   };
   const [status, setStatus] = useState("Existing User");
@@ -23,7 +27,7 @@ function SignUpPage() {
     Neckline: 34,
     "Low Hip": 82,
   });
-  const [navigate, setNav] = useState("/measurements");
+  const [navigate, setNav] = useState("/sign-up");
   const [log, setLog] = useState("");
   const [firstname, setFirst] = useState("");
   const [lastname, setLast] = useState("");
@@ -52,6 +56,8 @@ function SignUpPage() {
       });
     }
     checkValid();
+    console.log("is valid:" + isValid);
+    console.log(navigate);
   };
 
   const handleSubmit = (event) => {
@@ -78,9 +84,10 @@ function SignUpPage() {
             setNav("/login");
             setLog("false");
           } else {
-            setNav("/measurements");
+            setNav("/");
             setLog("true");
           }
+          console.log(log);
         },
         (error) => {
           console.log(error);
@@ -88,6 +95,10 @@ function SignUpPage() {
       );
     if (status === "Existing User") {
       setNav("/login");
+    }
+
+    if (!isValid) {
+      alert("Please enter username and password");
     }
   };
 
@@ -159,12 +170,7 @@ function SignUpPage() {
             </div>
           </div>
         </div>
-        <button
-          type="submit"
-          onClick={handleSubmit}
-          id="enter-info"
-          
-        >
+        <button type="submit" onClick={handleSubmit} id="enter-info">
           <Link to={navigate}>Continue</Link>
         </button>
       </div>

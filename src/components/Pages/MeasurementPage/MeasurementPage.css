@@ -10,11 +10,17 @@
  margin-top: 2%;
  align-items: center;
 }
+
+.measurementpage-header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
  
 .MeasurementPage .logo img {
  margin-top: 2%;
  width: 100px;
- margin-left: 47.5%;
+
 }
  
 * {
@@ -127,6 +133,7 @@ img.logo {
 .MeasurementPage .buttons {
  display: flex;
  flex-direction: column;
+ width: 100%;
 }
  
 .MeasurementPage button {
