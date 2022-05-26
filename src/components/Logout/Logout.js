@@ -5,10 +5,7 @@ import { Link as Redirect } from "react-router-dom";
 function Logout() {
   const handleSubmit = (event) => {
     event.preventDefault();
-    localStorage.setItem('firstname', '');
-    localStorage.setItem('curr', '');
-    localStorage.setItem('measurements', '');
-    localStorage.setItem('gender', '');
+    localStorage.clear();
     window.location.reload(true);
     axios.post('https://anastatiad.pythonanywhere.com/logoutLP', {
       'Status' : 'logout',

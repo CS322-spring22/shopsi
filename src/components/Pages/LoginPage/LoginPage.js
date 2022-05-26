@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link as Redirect} from "react-router-dom";
 import "./LoginPage.css";
 import axios from "axios";
 import logo from "./logo.png";
@@ -94,13 +94,10 @@ export class LoginPage extends Component {
             </div>
             <button
               type="submit"
-              onClick={this.handleSubmit}
-              onSubmit={async (event) => {
-                useNavigate(this.state.navigate);
-              }}
               id="enter-info"
+              onClick={this.handleSubmit}
             >
-              <Link to={this.state.navigate}>Login</Link>
+              <Redirect to={this.state.navigate}>Login</Redirect>
             </button>
           </form>
         </div>
