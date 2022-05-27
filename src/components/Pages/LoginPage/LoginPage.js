@@ -10,17 +10,17 @@ export class LoginPage extends Component {
     this.state = {
       username: "",
       password: "",
-      navigate: "/login",
+      // navigate: "/login",
       status: "test",
       isValid: false,
-      isSubmitted: false,
+      // isSubmitted: false,
     };
   }
 
   checkValid() {
     if (this.state.username !== "" && this.state.password !== "") {
       this.state.isValid = true;
-      this.state.navigate = "/";
+      // this.state.navigate = "/";
     } else {
       this.state.isValid = false;
     }
@@ -78,9 +78,7 @@ export class LoginPage extends Component {
             this.state.status === "User does not exist"
           ) {
             alert("You do not have an account. Please sign up.");
-            console.log(this.state.isSubmitted);
-            this.state.isSubmitted = true;
-            console.log(this.state.isSubmitted);
+            window.location = "/sign-up"
           } else {
             alert(
               "Hello, " + localStorage.getItem("firstname") + " welcome back!"
@@ -89,13 +87,13 @@ export class LoginPage extends Component {
               "measurements",
               JSON.stringify(result.Measurements)
             );
+            window.location = "/";
           }
         },
         (error) => {
           console.log(error);
         }
       );
-    console.log("isSubmitted: " + this.state.isSubmitted);
   };
 
   render() {
@@ -148,12 +146,12 @@ export class LoginPage extends Component {
               </button>
             )}
 
-            {/* After submission */}
+            {/* After submission
             {this.state.isSubmitted && (
               <button className="buttons">
                 <Redirect to={this.state.navigate}>Continue</Redirect>
               </button>
-            )}
+            )} */}
           </div>
       </div>
     );

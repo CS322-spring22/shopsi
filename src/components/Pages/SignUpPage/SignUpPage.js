@@ -13,8 +13,6 @@ function SignUpPage() {
       setIsValid(false);
     }
   };
-  const [isSubmitted, setSubmitted] = useState(false);
-
   const [status, setStatus] = useState("");
   const [username, setUser] = useState("");
   const [password, setPass] = useState("");
