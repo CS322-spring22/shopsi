@@ -572,15 +572,12 @@ export class MeasurementPage extends Component {
     return (
       <div className="MeasurementPage">
         <div className="measurementpage-header">
-          <h1>Hello {localStorage.getItem("firstname")}</h1>
+          <h2 className="title">Hello, {localStorage.getItem("firstname")}</h2>
           {/*If not submitted */}
           {!this.state.isSubmitted && <h2>Let's enter your measurements!</h2>}
           {this.state.isSubmitted && <h2>Here are your recommended sizes!</h2>}
           <div className="buttons">
             <Logout />
-            <button>
-              <Link to={"/"}>Go Back Home</Link>
-            </button>
           </div>
           <a href="/" className="logo">
             <img src={logo} alt="logo" />
@@ -590,10 +587,10 @@ export class MeasurementPage extends Component {
         </div>
         <div class="measurement">
           <form>
-            <h2>Enter your measurements</h2>
             {/* Only appears before submit */}
             {!this.state.isSubmitted && (
               <>
+                <h2>Enter your measurements</h2>
                 <div className="switch">
                   <div className="incm-switch">
                     CM

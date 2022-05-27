@@ -20,7 +20,7 @@ const Navbar = () => {
         {localStorage.getItem('firstname') != null && (
           <a href="/" className="logo">
             <img src={logo} alt="logo" />
-            <p> Welcome Back {localStorage.getItem('firstname')}</p>
+            <p> Welcome Back, {localStorage.getItem('firstname')}</p>
           </a>
         )}
         <ul className={"nav-menu"}>

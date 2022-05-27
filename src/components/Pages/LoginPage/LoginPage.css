@@ -84,7 +84,7 @@ img.logo {
   font-size: 16px;
 }
 
-.login button#enter-info {
+.LoginPage .buttons {
   margin-top: 5px;
   width: 70%;
   height: 50px;

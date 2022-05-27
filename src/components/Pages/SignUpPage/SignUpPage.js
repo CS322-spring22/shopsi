@@ -9,13 +9,13 @@ function SignUpPage() {
   const checkValid = () => {
     if (username != "" && password != "") {
       setIsValid(true);
-      setNav("/");
     } else {
       setIsValid(false);
-      setNav("/sign-up");
     }
   };
-  const [status, setStatus] = useState("Existing User");
+  const [isSubmitted, setSubmitted] = useState(false);
+
+  const [status, setStatus] = useState("");
   const [username, setUser] = useState("");
   const [password, setPass] = useState("");
   const [gender, setGender] = useState("");
@@ -27,7 +27,6 @@ function SignUpPage() {
     Neckline: 34,
     "Low Hip": 82,
   });
-  const [navigate, setNav] = useState("/sign-up");
   const [log, setLog] = useState("");
   const [firstname, setFirst] = useState("");
   const [lastname, setLast] = useState("");
@@ -56,8 +55,7 @@ function SignUpPage() {
       });
     }
     checkValid();
-    console.log("is valid:" + isValid);
-    console.log(navigate);
+    console.log(status);
   };
 
   const handleSubmit = (event) => {
@@ -65,6 +63,7 @@ function SignUpPage() {
     localStorage.setItem("curr", username);
     localStorage.setItem("gender", gender);
     localStorage.setItem("measurements", JSON.stringify(measurements));
+
     axios
       .post(`https://anastatiad.pythonanywhere.com/signupLP`, {
         username: username,
@@ -78,27 +77,26 @@ function SignUpPage() {
       .then(
         (response) => {
           var result = response.data;
-          setStatus(result.status);
-          console.log(result);
-          if (status === "Existing User") {
-            setNav("/login");
+          setStatus(result.Status);
+          console.log(status);
+          if (isValid && status === "Existing User") {
+            alert("You already have an account. Please log in");
+            window.location = "/login";
             setLog("false");
           } else {
-            setNav("/");
             setLog("true");
           }
-          console.log(log);
         },
         (error) => {
           console.log(error);
         }
       );
-    if (status === "Existing User") {
-      setNav("/login");
-    }
 
     if (!isValid) {
       alert("Please enter username and password");
+    } else if (status != "Existing User") {
+      alert("Welcome to Shop$i! Please Log in");
+      window.location = "/login";
     }
   };
 
@@ -170,8 +168,8 @@ function SignUpPage() {
             </div>
           </div>
         </div>
-        <button type="submit" onClick={handleSubmit} id="enter-info">
-          <Link to={navigate}>Continue</Link>
+        <button type="submit" onClick={handleSubmit} className="buttons">
+          Sign Up
         </button>
       </div>
     </div>

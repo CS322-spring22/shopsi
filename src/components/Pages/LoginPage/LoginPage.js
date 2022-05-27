@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useNavigate, Link as Redirect } from "react-router-dom";
+import { Link as Redirect } from "react-router-dom";
 import "./LoginPage.css";
 import axios from "axios";
 import logo from "./logo.png";
@@ -10,14 +10,27 @@ export class LoginPage extends Component {
     this.state = {
       username: "",
       password: "",
-      navigate: "/measurements",
+      navigate: "/login",
+      status: "test",
+      isValid: false,
+      isSubmitted: false,
     };
+  }
+
+  checkValid() {
+    if (this.state.username !== "" && this.state.password !== "") {
+      this.state.isValid = true;
+      this.state.navigate = "/";
+    } else {
+      this.state.isValid = false;
+    }
   }
 
   handleInput = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
+    this.checkValid();
   };
 
   getMeasure = (event) => {
@@ -42,6 +55,9 @@ export class LoginPage extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    if (!this.state.isValid) {
+      alert("Please enter your username and password");
+    }
     localStorage.setItem("curr", this.state.username);
     axios
       .post(`https://anastatiad.pythonanywhere.com/loginLP`, {
@@ -55,12 +71,20 @@ export class LoginPage extends Component {
           var result = response.data;
           localStorage.setItem("gender", result.Gender);
           localStorage.setItem("firstname", result.Firstname);
-          this.state.status = result.status;
-          console.log(result);
-          if (this.state.status === "User does not exist") {
-            this.state.navigate = "/sign-up";
+          this.state.status = result.Status;
+          console.log(this.state.status);
+          if (
+            this.state.isValid &&
+            this.state.status === "User does not exist"
+          ) {
+            alert("You do not have an account. Please sign up.");
+            console.log(this.state.isSubmitted);
+            this.state.isSubmitted = true;
+            console.log(this.state.isSubmitted);
           } else {
-            this.state.navigate = "/measurements";
+            alert(
+              "Hello, " + localStorage.getItem("firstname") + " welcome back!"
+            );
             localStorage.setItem(
               "measurements",
               JSON.stringify(result.Measurements)
@@ -71,6 +95,7 @@ export class LoginPage extends Component {
           console.log(error);
         }
       );
+    console.log("isSubmitted: " + this.state.isSubmitted);
   };
 
   render() {
@@ -84,38 +109,52 @@ export class LoginPage extends Component {
           <h3 className="desc">Shop with your size</h3>
           <h2>Login</h2>
         </div>
-        <div className="login">
-          <div className="user-info">
-            <div className="box">
-              <div className="infoName">Username</div>
-              <div className="infoBox">
-                <input
-                  type="text"
-                  id="usernameText"
-                  name="username"
-                  value={this.state.username}
-                  onChange={this.handleInput}
-                />
+          <div className="login">
+            <div className="user-info">
+              <div className="box">
+                <div className="infoName">Username</div>
+                <div className="infoBox">
+                  <input
+                    type="text"
+                    id="usernameText"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.handleInput}
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="box">
-              <div className="infoName">Password</div>
-              <div className="infoBox">
-                <input
-                  type="password"
-                  id="passwordText"
-                  name="password"
-                  value={this.state.password}
-                  onChange={this.handleInput}
-                />
+              <div className="box">
+                <div className="infoName">Password</div>
+                <div className="infoBox">
+                  <input
+                    type="password"
+                    id="passwordText"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleInput}
+                  />
+                </div>
               </div>
             </div>
+            {/* Before submission */}
+            {!this.state.isSubmitted && (
+              <button
+                type="submit"
+                onClick={this.handleSubmit}
+                className="buttons"
+              >
+                Login
+              </button>
+            )}
+
+            {/* After submission */}
+            {this.state.isSubmitted && (
+              <button className="buttons">
+                <Redirect to={this.state.navigate}>Continue</Redirect>
+              </button>
+            )}
           </div>
-          <button type="submit" id="enter-info" onClick={this.handleSubmit}>
-            <Redirect to={this.state.navigate}>Login</Redirect>
-          </button>
-        </div>
       </div>
     );
   }
