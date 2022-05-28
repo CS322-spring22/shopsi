@@ -514,16 +514,29 @@ export class MeasurementPage extends Component {
       "unit": this.state.unit,
       "curr": localStorage.getItem("curr")
     }
-    var options2 = {
-      "Waist": this.state.waist,
-      "Bust/Chest": this.state.bust,
-      "Inseam": this.state.inseam,
-      "Arm Length": this.state.armLen,
-      "Neckline": this.state.neck,
-      "Low Hip": this.state.lowHip,
-      "unit": this.state.unit,
-      "curr": localStorage.getItem("curr")
-    }
+    if (this.state.unit === "in") {
+      var options2 = {
+        "Waist": Math.round(this.state.waist*2.54),
+        "Bust/Chest": Math.round(this.state.bust*2.54),
+        "Inseam": Math.round(this.state.inseam*2.54),
+        "Arm Length": Math.round(this.state.armLen*2.54),
+        "Neckline": Math.round(this.state.neck*2.54),
+        "Low Hip": Math.round(this.state.lowHip*2.54),
+        "unit": "cm",
+        "curr": localStorage.getItem("curr")
+      }
+      } else {
+        var options2 = {
+          "Waist": this.state.waist,
+          "Bust/Chest": this.state.bust,
+          "Inseam": this.state.inseam,
+          "Arm Length": this.state.armLen,
+          "Neckline": this.state.neck,
+          "Low Hip": this.state.lowHip,
+          "unit": this.state.unit,
+          "curr": localStorage.getItem("curr")
+        }
+      }
     axios
       .post(`https://anastatiad.pythonanywhere.com/measureLP`, options)
       .then(
