@@ -61,6 +61,7 @@ function SignUpPage() {
     localStorage.setItem("curr", username);
     localStorage.setItem("gender", gender);
     localStorage.setItem("measurements", JSON.stringify(measurements));
+    localStorage.setItem('firstname', firstname);
 
     axios
       .post(`https://anastatiad.pythonanywhere.com/signupLP`, {
@@ -114,7 +115,7 @@ function SignUpPage() {
             <div className="infoName">Gender</div>
             <div className="infoBox">
               <select name="gender" value={gender} onChange={handleInput}>
-                <option disabled selected hidden>
+                <option selected>
                   Select Gender
                 </option>
                 <option value="male">Male</option>
@@ -127,14 +128,14 @@ function SignUpPage() {
           <div className="box">
             <div className="infoName">First Name</div>
             <div className="infoBox">
-              <input type="text" id="firstNameText" required />
+              <input type="text" id="firstNameText" name='firstname' onChange={handleInput} required />
             </div>
           </div>
 
           <div className="box">
             <div className="infoName">Last Name</div>
             <div className="infoBox">
-              <input type="text" id="lastNameText" required />
+              <input type="text" id="lastNameText" name='lastname' onChange={handleInput} required />
             </div>
           </div>
 
