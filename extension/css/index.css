@@ -175,14 +175,26 @@ button#edit:hover {
     transition: .5s;
     background-color: #c184ff;
 }
-div#resultsTop {
-    margin-top: 50px;
+div#resultsManTop {
+    margin-top: 10px;
     font-size: 18px;
     font-family: 'Montserrat';
     text-align: center;
 }
-div#resultsBottom {
-    margin-top: 20px;
+div#resultsWomanTop {
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: 'Montserrat';
+    text-align: center;
+}
+div#resultsManBottom {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Montserrat';
+}
+div#resultsWomanBottom {
+    margin-top: 10px;
     text-align: center;
     font-size: 18px;
     font-family: 'Montserrat';
