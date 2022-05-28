@@ -20,7 +20,7 @@ export class HomePage extends Component {
               Your style. <br />
               Your fit.
             </h1>
-            <a href="https://chrome.google.com/webstore/category/extensions?hl=en">
+            <a href="https://drive.google.com/drive/u/1/folders/10dA8LuKD6lEyyxr9jUEeTe7Wa0I3B3LG">
               Install Extension
             </a>
           </div>
@@ -67,7 +67,7 @@ export class HomePage extends Component {
                 <p><strong>3. Low hip:</strong> Measure around the fullest part of your hip.</p>
                 <p><strong>4. Inside leg:</strong> Inside leg is measured from the crotch to the floor</p>
                 <p><strong>Arm length:</strong> Measure from your shoulder point to your wrist.</p>
-                <p><strong>Neckline:</strong> To find the perfect size on shirts when using ties/bows - Measure your neckline, the collar needs to fit properly.</p>
+                <p><strong>Neckline:</strong> Measure all the way around the base of your neck.</p>
               </div>
             </div>
             <div className="guide-pic">

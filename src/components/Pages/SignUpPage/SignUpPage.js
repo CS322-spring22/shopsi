@@ -7,7 +7,7 @@ import logo from "./logo.png";
 function SignUpPage() {
   const [isValid, setIsValid] = useState(false);
   const checkValid = () => {
-    if (username != "" && password != "") {
+    if (username != "" && password != "" && firstname != "" && lastname != "") {
       setIsValid(true);
     } else {
       setIsValid(false);
@@ -53,7 +53,6 @@ function SignUpPage() {
       });
     }
     checkValid();
-    console.log(status);
   };
 
   const handleSubmit = (event) => {
@@ -78,7 +77,7 @@ function SignUpPage() {
           var result = response.data;
           setStatus(result.Status);
           console.log(status);
-          if (isValid && status === "Existing User") {
+          if (isValid && status === "User already exists") {
             alert("You already have an account. Please log in");
             window.location = "/login";
             setLog("false");
@@ -92,8 +91,8 @@ function SignUpPage() {
       );
 
     if (!isValid) {
-      alert("Please enter username and password");
-    } else if (status != "Existing User") {
+      alert("Please complete all fields");
+    } else if (status != "User already exists") {
       alert("Welcome to Shop$i! Please Log in");
       window.location = "/login";
     }
@@ -128,14 +127,28 @@ function SignUpPage() {
           <div className="box">
             <div className="infoName">First Name</div>
             <div className="infoBox">
-              <input type="text" id="firstNameText" name='firstname' onChange={handleInput} required />
+              <input
+                type="text"
+                id="firstNameText"
+                name="firstname"
+                value={firstname}
+                onChange={handleInput}
+                required
+              />
             </div>
           </div>
 
           <div className="box">
             <div className="infoName">Last Name</div>
             <div className="infoBox">
-              <input type="text" id="lastNameText" name='lastname' onChange={handleInput} required />
+              <input
+                type="text"
+                id="lastNameText"
+                name="lastname"
+                value={lastname}
+                onChange={handleInput}
+                required
+              />
             </div>
           </div>
 
