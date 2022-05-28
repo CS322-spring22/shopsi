@@ -7,7 +7,7 @@ import Logout from "../../Logout/Logout";
 
 export class MeasurementPage extends Component {
   between(x, min, max) {
-    return x >= min || x <= max;
+    return x >= min && x <= max;
   }
 
   getManTopSizeRecommend() {
@@ -492,7 +492,7 @@ export class MeasurementPage extends Component {
       bottomSizeW: "",
       topSizeM: "",
       bottomSizeM: "",
-      unit: "",
+      unit: "cm",
     };
   }
 
@@ -504,19 +504,31 @@ export class MeasurementPage extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    var options = {
+      "Waist": this.state.waist,
+      "Bust/Chest": this.state.bust,
+      "Inside Leg": this.state.inseam,
+      "Arm Length": this.state.armLen,
+      "Neckline": this.state.neck,
+      "Low Hip": this.state.lowHip,
+      "unit": this.state.unit,
+      "curr": localStorage.getItem("curr")
+    }
+    var options2 = {
+      "Waist": this.state.waist,
+      "Bust/Chest": this.state.bust,
+      "Inseam": this.state.inseam,
+      "Arm Length": this.state.armLen,
+      "Neckline": this.state.neck,
+      "Low Hip": this.state.lowHip,
+      "unit": this.state.unit,
+      "curr": localStorage.getItem("curr")
+    }
     axios
-      .post(`https://anastatiad.pythonanywhere.com/measureLP`, {
-        Waist: this.state.waist,
-        "Bust/Chest": this.state.bust,
-        "Inside Leg": this.state.inseam,
-        "Arm Length": this.state.armLen,
-        Neckline: this.state.neck,
-        "Low Hip": this.state.lowHip,
-        unit: this.state.unit,
-        curr: localStorage.getItem("curr"),
-      })
+      .post(`https://anastatiad.pythonanywhere.com/measureLP`, options)
       .then(
         (response) => {
+          localStorage.setItem('measurements', JSON.stringify(options2))
           var result = response.data;
           this.state.status = result.status;
           console.log(result);
@@ -574,8 +586,8 @@ export class MeasurementPage extends Component {
         <div className="measurementpage-header">
           <h2 className="title">Hello, {localStorage.getItem("firstname")}</h2>
           {/*If not submitted */}
-          {!this.state.isSubmitted || <h2>Let's enter your measurements!</h2>}
-          {this.state.isSubmitted || <h2>Here are your recommended sizes!</h2>}
+          {!this.state.isSubmitted && <h2>Let's enter your measurements!</h2>}
+          {this.state.isSubmitted && <h2>Here are your recommended sizes!</h2>}
           <div className="buttons">
             <Logout />
           </div>
@@ -588,7 +600,7 @@ export class MeasurementPage extends Component {
         <div class="measurement">
           <form>
             {/* Only appears before submit */}
-            {!this.state.isSubmitted || (
+            {!this.state.isSubmitted && (
               <>
                 <h2>Enter your measurements</h2>
                 <div className="switch">
@@ -610,7 +622,7 @@ export class MeasurementPage extends Component {
                   <div class="box">
                     <label class="mesName">Bust/Chest</label>
                     {/* If unit = cm */}
-                    {!this.state.isInches || (
+                    {!this.state.isInches && (
                       <div class="sliderBar">
                         <input
                           type="range"
@@ -628,7 +640,7 @@ export class MeasurementPage extends Component {
                     )}
 
                     {/* If unit = in */}
-                    {this.state.isInches || (
+                    {this.state.isInches && (
                       <div class="sliderBar">
                         <input
                           type="range"
@@ -649,7 +661,7 @@ export class MeasurementPage extends Component {
                   <div class="box">
                     <label class="mesName">Neckline</label>
                     {/* If unit = cm */}
-                    {!this.state.isInches || (
+                    {!this.state.isInches && (
                       <div class="sliderBar">
                         <input
                           type="range"
@@ -667,7 +679,7 @@ export class MeasurementPage extends Component {
                     )}
 
                     {/* If unit = in */}
-                    {this.state.isInches || (
+                    {this.state.isInches && (
                       <div class="sliderBar">
                         <input
                           type="range"
@@ -688,7 +700,7 @@ export class MeasurementPage extends Component {
                   <div class="box">
                     <label class="mesName">Waist</label>
                     {/* If unit = cm */}
-                    {!this.state.isInches || (
+                    {!this.state.isInches && (
                       <div class="sliderBar">
                         <input
                           type="range"
@@ -706,7 +718,7 @@ export class MeasurementPage extends Component {
                     )}
 
                     {/* If unit = in */}
-                    {this.state.isInches || (
+                    {this.state.isInches && (
                       <div class="sliderBar">
                         <input
                           type="range"
@@ -727,7 +739,7 @@ export class MeasurementPage extends Component {
                   <div class="box">
                     <label class="mesName">Low Hip</label>
                     {/* If unit = cm */}
-                    {!this.state.isInches || (
+                    {!this.state.isInches && (
                       <div class="sliderBar">
                         <input
                           type="range"
@@ -745,7 +757,7 @@ export class MeasurementPage extends Component {
                     )}
 
                     {/* If unit = in */}
-                    {this.state.isInches || (
+                    {this.state.isInches && (
                       <div class="sliderBar">
                         <input
                           type="range"
@@ -766,7 +778,7 @@ export class MeasurementPage extends Component {
                   <div class="box">
                     <label class="mesName">Arm length</label>
                     {/* If unit = cm */}
-                    {!this.state.isInches || (
+                    {!this.state.isInches && (
                       <div class="sliderBar">
                         <input
                           type="range"
@@ -784,7 +796,7 @@ export class MeasurementPage extends Component {
                     )}
 
                     {/* If unit = in */}
-                    {this.state.isInches || (
+                    {this.state.isInches && (
                       <div class="sliderBar">
                         <input
                           type="range"
@@ -805,7 +817,7 @@ export class MeasurementPage extends Component {
                   <div class="box">
                     <label class="mesName">Inside leg</label>
                     {/* If unit = cm */}
-                    {!this.state.isInches || (
+                    {!this.state.isInches && (
                       <div class="sliderBar">
                         <input
                           type="range"
@@ -823,7 +835,7 @@ export class MeasurementPage extends Component {
                     )}
 
                     {/* If unit = in */}
-                    {this.state.isInches || (
+                    {this.state.isInches && (
                       <div class="sliderBar">
                         <input
                           type="range"
@@ -844,22 +856,22 @@ export class MeasurementPage extends Component {
               </>
             )}
             {/* Only appears after submit */}
-            {this.state.isSubmitted ||
-              localStorage.getItem("gender") === "female" || (
+            {this.state.isSubmitted &&
+              localStorage.getItem("gender") === "female" && (
                 <div className="user-size">
                   <p>Your top size is {this.state.topSizeW}</p>
                   <p>Your bottom size is {this.state.bottomSizeW}</p>
                 </div>
               )}
-            {this.state.isSubmitted ||
-              localStorage.getItem("gender") === "male" || (
+            {this.state.isSubmitted &&
+              localStorage.getItem("gender") === "male" && (
                 <div className="user-size">
                   <p>Your top size is {this.state.topSizeM}</p>
                   <p>Your bottom size is {this.state.bottomSizeM}</p>
                 </div>
               )}
-            {this.state.isSubmitted ||
-              localStorage.getItem("gender") === "nonbinary" || (
+            {this.state.isSubmitted &&
+              localStorage.getItem("gender") === "nonbinary" && (
                 <div className="user-size">
                   <p>Your top size in men's is {this.state.topSizeM}</p>
                   <p>Your bottom size in men's is {this.state.bottomSizeM}</p>
@@ -867,7 +879,7 @@ export class MeasurementPage extends Component {
                   <p>Your bottom size in women's is {this.state.bottomSizeW}</p>
                 </div>
               )}
-            {!this.state.isSubmitted || (
+            {!this.state.isSubmitted && (
               <div className="buttons">
                 <button
                   type="submit"
