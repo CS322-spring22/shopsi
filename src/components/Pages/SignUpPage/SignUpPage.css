@@ -1,32 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Palette+Mosaic&display=swap");
 
-.SignUpPage {
-  margin-top: 12%;
-  align-items: center;
-}
-
-.SignUpPage .logo img {
-  width: 100px;
-  margin-left: 47%;
-}
-
-.box {
-  display: flex;
-  align-items: center;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body.extension {
-  width: 400px;
-  height: 600px;
-  overflow: hidden;
-  background: #ffffff;
+.SignUpPage {
+  margin-top: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.SignUpPage .logo img {
+  width: 100px;
+}
+
+.SignUpPage .signup-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.SignUpPage .signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .SignUpPage h1 {
@@ -55,34 +56,37 @@ img.logo {
   display: block;
 }
 
-.user-info {
+.signup .user-info {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
-  margin-left: 2%
+  margin-top: 10%;
 }
 
-.box .infoBox {
+.signup .box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 450px;
+}
+
+.signup .box .infoBox {
   height: 50px;
   width: 325px;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
-.box .infoName {
-  position: relative;
-  left: 35%;
-  display: inline-block;
+.signup .box .infoName {
   width: 40%;
   font-family: "Montserrat";
   font-size: 16px;
 }
 
-button#enter-info {
+.signup .buttons {
   margin-top: 5px;
-  width: 20%;
+  width: 70%;
   height: 50px;
   border: 1px solid;
   background: #a34bfc;
@@ -92,6 +96,4 @@ button#enter-info {
   font-weight: 600;
   cursor: pointer;
   outline: none;
-  position: relative;
-  left: 39.5%;
 }
